@@ -44,7 +44,7 @@ def talker(topic):
             self.robot = deque(self.obs_len*[],self.obs_len)
             self.r = rospy.Rate(10)
             # Max number of pedestrians
-            self.maxNumPeds = 62
+            self.maxNumPeds = 40
             rospy.Subscriber("/pedsim/tracked_persons", TrackedPersons, self.callback_persons)
             rospy.Subscriber("/pedsim/robot_position", Odometry, self.callback_robot)
 
@@ -88,15 +88,15 @@ def talker(topic):
 
             for seq in self.people:
                 seq_data = np.asarray(seq)
-                for ped in range(numUniquePeds):
+                for ped in range(min(numUniquePeds,self.maxNumPeds-1)):
                     pedID = pedID_list[ped]
-
                     if pedID == 0:
                         continue
                     else:
                         sped = seq_data[seq_data[:, 0] == pedID, :]
                         if sped.size != 0:
                             data[counter, ped+1, :] = sped
+
                 counter += 1
             return data
 
@@ -105,8 +105,11 @@ def talker(topic):
                 if len(self.people) == self.obs_len and len(self.robot) == self.obs_len:
                     data = self.next_batch()
                     output = ownsample(data, 5)
+                    rospy.loginfo('Computed Trajectory')
                     rospy.loginfo(output)
-                    self.pub.publish(output)
+                    rospy.loginfo('That's all'')
+                    # TODO create an own msg type
+                    # self.pub.publish(output)
                 self.r.sleep()
 
 
