@@ -1,0 +1,7 @@
+#! /usr/bin/env python
+
+import pedsim_hello.hello
+
+
+if __name__ == '__main__':
+    pedsim_hello.hello.talker("dummy")

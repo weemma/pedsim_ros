@@ -18,6 +18,10 @@ set(PEDSIM_SIMULATOR_DEPENDENCIES
     dynamic_reconfigure
 )
 
+## Don't trust these lines
+catkin_python_setup()
+#find_package(rospy)
+
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS ${PEDSIM_SIMULATOR_DEPENDENCIES})
 find_package(Boost REQUIRED)
@@ -127,5 +131,6 @@ install(
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
+catkin_install_python(PROGRAMS bin/hello DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 ## Unit Tests
