@@ -14,8 +14,11 @@ from nav_msgs.msg import Odometry
 from std_msgs.msg import String
 from collections import deque
 import numpy as np
-from social_own_sample import ownsample
+from social_own_sample import MySampler
+from threading import Lock
 
+mutex_robot = Lock()
+mutex_people = Lock()
 
 def say(name):
     print('Hello ' + name)
@@ -45,6 +48,7 @@ def talker(topic):
             self.r = rospy.Rate(10)
             # Max number of pedestrians
             self.maxNumPeds = 40
+            self.model = MySampler()
             rospy.Subscriber("/pedsim/tracked_persons", TrackedPersons, self.callback_persons)
             rospy.Subscriber("/pedsim/robot_position", Odometry, self.callback_robot)
 
@@ -52,14 +56,18 @@ def talker(topic):
             '''
             Callback Function to get position of the near pedestrians
             '''
+            mutex_people.acquire()
             self.readcoord(msg)
+            mutex_people.release()
 
         def callback_robot(self, msg):
             '''
             Callback Function to get position of the robot
             TODO: Make sure that pub of robot and tracked robot has same Rate
             '''
+            mutex_robot.acquire()
             self.robot.append([-1, msg.pose.pose.position.x, msg.pose.pose.position.y])
+            mutex_robot.release()
 
         def readcoord(self, msg):
             '''
@@ -103,15 +111,18 @@ def talker(topic):
         def talk(self):
             while not rospy.is_shutdown():
                 if len(self.people) == self.obs_len and len(self.robot) == self.obs_len:
+                    mutex_robot.acquire()
+                    mutex_people.acquire()
                     data = self.next_batch()
-                    output = ownsample(data, 5)
+                    mutex_people.release()
+                    mutex_robot.release()
+                    output = self.model.mysample(data, 5)
                     rospy.loginfo('Computed Trajectory')
                     rospy.loginfo(output)
-                    rospy.loginfo('That's all'')
+                    rospy.loginfo('That was all')
                     # TODO create an own msg type
                     # self.pub.publish(output)
                 self.r.sleep()
-
 
     rosboject = PubAndSub()
     rosboject.talk()
