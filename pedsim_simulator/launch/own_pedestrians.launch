@@ -6,7 +6,8 @@
   <node name="pedsim_simulator" pkg="pedsim_simulator" type="pedsim_simulator" output="screen">
       <!-- 0 - headless, 1 - minimal, 2 - full -->
       <param name="visual_mode" value="0" type="int"/>
-      <param name="scene_file" value="$(find pedsim_simulator)scenarios/social_contexts.xml" type="string"/>
+      <param name="scene_file" value="$(find pedsim_simulator)scenarios/scene4.xml" type="string"/>
+			<!--param name="scene_file" value="$(find pedsim_simulator)scenarios/social_contexts.xml" type="string"-->
       <param name="default_queue_size" value="10"/>
       <param name="max_robot_speed" value="1.5" type="double"/>
       <param name="robot_mode" value="1" type="int"/>
@@ -16,6 +17,8 @@
   <!-- Rviz -->
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities.rviz"/>
 
+  <!-- Load universal robot description format (URDF) -->
+  <param name="robot_description" textfile="$(find jackal_description)/urdf/jackal.urdf"/>
 
   <!-- Robot control -->
   <group ns="/pedbot/control">
@@ -24,6 +27,10 @@
         <param name="pose_initial_x" value="4.0"/>
         <param name="pose_initial_y" value="4.0"/>
         <param name="pose_initial_theta" value="0.70"/>
+				<!-- Parameters Scene1 -->
+        <!--param name="pose_initial_x" value="35"-->
+        <!--param name="pose_initial_y" value="40"-->
+        <!--param name="pose_initial_theta" value="5"-->
     </node>
 
     <!-- Keyboard robot steering -->

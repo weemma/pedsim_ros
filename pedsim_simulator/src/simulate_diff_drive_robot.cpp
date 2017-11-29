@@ -70,8 +70,7 @@ int main(int argc, char** argv)
 
     // Process parameters
     privateHandle.param<std::string>("world_frame", g_worldFrame, "odom");
-    privateHandle.param<std::string>("robot_frame", g_robotFrame,
-        "base_footprint");
+    privateHandle.param<std::string>("robot_frame", g_robotFrame, "base_link");
 
     privateHandle.param<double>("simulation_factor", g_simulationFactor,
         1.0); // set to e.g. 2.0 for 2x speed

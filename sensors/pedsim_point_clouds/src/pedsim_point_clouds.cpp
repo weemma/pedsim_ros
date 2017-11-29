@@ -83,7 +83,9 @@ public:
         robot_position_.resize(2);
         robot_position_ = { 0, 0 };
 
-        robot_frame_ = "odom";
+
+        nh_.param<std::string>("/pedsim_point_clouds/robot_frame", robot_frame_, "base_link");
+//        robot_frame_ = "odom";
 
         // read local map dimensions
         nh_.param("/pedsim_point_clouds/local_width", local_width_, 3.0);

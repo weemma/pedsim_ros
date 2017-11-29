@@ -36,9 +36,11 @@ Ped::Tagent::Tagent()
     vmax = distribution(generator);
 
     forceFactorDesired = 1.0;
-    forceFactorSocial = 2.1;
+//    forceFactorSocial = 2.1;
+    forceFactorSocial = 4;
     forceFactorObstacle = 10.0;
-    forceSigmaObstacle = 0.8;
+//    forceSigmaObstacle = 0.8;
+    forceSigmaObstacle = 1.8;
 
     agentRadius = 0.35;
     relaxationTime = 0.5;

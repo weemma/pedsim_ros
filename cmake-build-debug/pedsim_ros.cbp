@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pedsim_ros"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/fran/ros/src/pedsim_ros/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/fran/ros/src/pedsim_ros/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/fran/ros/src/pedsim_ros/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pedsim_ros">
+				<Option output="/home/fran/ros/src/pedsim_ros/cmake-build-debug/pedsim_ros" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/fran/ros/src/pedsim_ros/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 pedsim_ros"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="pedsim_ros/fast">
+				<Option output="/home/fran/ros/src/pedsim_ros/cmake-build-debug/pedsim_ros" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/fran/ros/src/pedsim_ros/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 pedsim_ros/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/fran/ros/src/pedsim_ros/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_agent.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_angle.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_includes.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_obstacle.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_scene.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_tree.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_vector.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/include/pedsim/ped_waypoint.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_agent.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_angle.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_obstacle.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_scene.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_tree.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_vector.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim/src/ped_waypoint.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/agentstatemachine.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/config.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/agent.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/agentcluster.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/agentgroup.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/areawaypoint.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/attractionarea.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/obstacle.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/queueingwaypoint.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/scenarioelement.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/waitingqueue.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/element/waypoint.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/force/alongwallforce.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/force/force.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/force/groupcoherenceforce.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/force/groupgazeforce.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/force/grouprepulsionforce.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/force/randomforce.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/orientationhandler.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/rng.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/scenarioreader.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/scene.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/simulator.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/utilities.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/waypointplanner/groupwaypointplanner.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/waypointplanner/individualwaypointplanner.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/waypointplanner/queueingplanner.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/waypointplanner/shoppingplanner.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/include/pedsim_simulator/waypointplanner/waypointplanner.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/agentstatemachine.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/config.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/agent.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/agentcluster.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/agentgroup.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/areawaypoint.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/attractionarea.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/obstacle.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/queueingwaypoint.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/scenarioelement.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/waitingqueue.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/element/waypoint.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/force/alongwallforce.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/force/force.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/force/groupcoherenceforce.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/force/groupgazeforce.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/force/grouprepulsionforce.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/force/randomforce.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/orientationhandler.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/rng.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/scenarioreader.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/scene.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/simulate_diff_drive_robot.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/simulator.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/simulator_node.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/waypointplanner/groupwaypointplanner.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/waypointplanner/individualwaypointplanner.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/waypointplanner/queueingplanner.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/waypointplanner/shoppingplanner.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/waypointplanner/waypointplanner.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/sensors/pedsim_point_clouds/src/pedsim_point_clouds.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/additional_topic_subscriber.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/additional_topic_subscriber.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/detected_persons_display.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/detected_persons_display.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/human_attributes_display.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/human_attributes_display.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/person_display_common.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/person_display_common.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/social_activities_display.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/social_activities_display.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/social_relations_display.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/social_relations_display.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/tracked_groups_display.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/tracked_groups_display.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/tracked_persons_cache.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/tracked_persons_cache.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/tracked_persons_display.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/tracked_persons_display.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/visuals/covariance_visual.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/visuals/mesh_node.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/visuals/person_visual.cpp">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/visuals/person_visual.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/visualization/spencer_tracking_rviz_plugin/src/visuals/text_node.h">
+			<Option target="pedsim_ros"/>
+		</Unit>
+		<Unit filename="/home/fran/ros/src/pedsim_ros/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -34,6 +34,8 @@
 #include <pedsim_simulator/element/agentcluster.h>
 #include <pedsim_simulator/scene.h>
 #include <pedsim_simulator/simulator.h>
+#include "../include/pedsim_simulator/element/areawaypoint.h"
+#include "../include/pedsim_simulator/simulator.h"
 
 const double PERSON_MESH_SCALE = 2.0 / 8.5 * 1.8;
 
@@ -58,6 +60,7 @@ Simulator::~Simulator()
     pub_obstacles_.shutdown();
     pub_all_agents_.shutdown();
     pub_tracked_persons_.shutdown();
+    pub_goal_.shutdown();
     pub_tracked_groups_.shutdown();
     pub_social_activities_.shutdown();
     pub_robot_position_.shutdown();
@@ -107,6 +110,8 @@ bool Simulator::initializeSimulation()
         "/pedsim/dynamic_obstacles", queue_size);
     pub_tracked_persons_ = nh_.advertise<pedsim_msgs::TrackedPersons>(
         "/pedsim/tracked_persons", queue_size);
+    pub_goal_ = nh_.advertise<geometry_msgs::Point>(
+            "/pedsim/goal", queue_size);
     pub_tracked_groups_ = nh_.advertise<pedsim_msgs::TrackedGroups>(
         "/pedsim/tracked_groups", queue_size);
     pub_social_activities_ = nh_.advertise<pedsim_msgs::SocialActivities>(
@@ -138,7 +143,7 @@ bool Simulator::initializeSimulation()
         return false;
     }
 
-    private_nh.param<bool>("enable_groups", CONFIG.groups_enabled, true);
+    private_nh.param<bool>("enable_groups", CONFIG.groups_enabled, false);
     private_nh.param<double>("max_robot_speed", CONFIG.max_robot_speed, 1.5);
 
     int op_mode = 1;
@@ -180,33 +185,34 @@ void Simulator::runSimulation()
             }
         }
 
-        updateRobotPositionFromTF(); // move robot
-        if (!paused_)
-            SCENE.moveAllAgents(); // move all the pedestrians
-
         // mandatory data stream
         publishData();
         publishRobotPosition();
         publishObstacles();
 
-        if (CONFIG.visual_mode == VisualMode::MINIMAL) {
-            publishAgents(); // animated markers
+        updateRobotPositionFromTF(); // move robot
+        if (!paused_)
+            SCENE.moveAllAgents(); // move all the pedestrians
 
-            if (SCENE.getTime() < 20) {
+
+//        if (CONFIG.visual_mode == VisualMode::MINIMAL) {
+//            publishAgents(); // animated markers
+//
+//            if (SCENE.getTime() < 20) {
                 publishWalls();
-            }
-        }
-
-        if (CONFIG.visual_mode == VisualMode::FULL) {
-            publishSocialActivities();
-            publishGroupVisuals();
-            updateAgentActivities();
-
-            if (SCENE.getTime() < 20) {
-                publishAttractions();
-                publishWalls();
-            }
-        }
+//            }
+//        }
+//
+//        if (CONFIG.visual_mode == VisualMode::FULL) {
+//            publishSocialActivities();
+//            publishGroupVisuals();
+//            updateAgentActivities();
+//
+//            if (SCENE.getTime() < 20) {
+//                publishAttractions();
+//                publishWalls();
+//            }
+//        }
 
         ros::spinOnce();
         r.sleep();
@@ -236,7 +242,7 @@ void Simulator::reconfigureCB(pedsim_simulator::PedsimSimulatorConfig& config,
     CONFIG.setRandomForce(config.force_random);
     CONFIG.setAlongWallForce(config.force_wall);
 
-    // puase or unpause the simulation
+    // pause or unpause the simulation
     if (paused_ != config.paused) {
         paused_ = config.paused;
     }
@@ -325,13 +331,13 @@ void Simulator::updateRobotPositionFromTF()
         // Get robot position via TF
         tf::StampedTransform tfTransform;
         try {
-            transform_listener_->lookupTransform("odom", "base_footprint",
+            transform_listener_->lookupTransform("odom", "base_link",
                 ros::Time(0), tfTransform);
         }
         catch (tf::TransformException& e) {
             ROS_WARN_STREAM_THROTTLE(
                 5.0,
-                "TF lookup from base_footprint to odom failed. Reason: " << e.what());
+                "TF lookup from base_link to odom failed. Reason: " << e.what());
             return;
         }
 
@@ -428,6 +434,7 @@ void Simulator::publishData()
     /// Tracked people
     pedsim_msgs::TrackedPersons tracked_people;
     std_msgs::Header tracked_people_header;
+    geometry_msgs::Point destination;
     tracked_people_header.stamp = ros::Time::now();
     tracked_people.header = tracked_people_header;
     tracked_people.header.frame_id = "odom";
@@ -440,6 +447,12 @@ void Simulator::publishData()
         person.track_id = a->getId();
         person.is_occluded = false;
         person.detection_id = a->getId();
+        if (person.track_id ==0)
+        {
+            Ped::Tvector position = dynamic_cast<AreaWaypoint *>(a->getCurrentDestination())->closestPoint(a->getPosition());
+            destination.x = position.x;
+            destination.y = position.y;
+        }
         // person.age = 0;   // also not simulated yet, use a distribution from data
         // collected
 
@@ -491,6 +504,7 @@ void Simulator::publishData()
     /// publish the messages
     pub_tracked_persons_.publish(tracked_people);
     pub_tracked_groups_.publish(tracked_groups);
+    pub_goal_.publish(destination);
 }
 
 /// -----------------------------------------------------------------
@@ -738,8 +752,8 @@ void Simulator::publishObstacles()
 
     for (const auto& obstacle : SCENE.obstacle_cells_) {
         geometry_msgs::Point p;
-        p.x = obstacle.x;
-        p.y = obstacle.y;
+        p.x = obstacle.x+1.;
+        p.y = obstacle.y+1.;
         p.z = 0.0;
         grid_cells.cells.push_back(p);
     }
@@ -770,8 +784,8 @@ void Simulator::publishWalls()
 
     for (const auto& obstacle : SCENE.obstacle_cells_) {
         geometry_msgs::Point p;
-        p.x = obstacle.x + 0.5;
-        p.y = obstacle.y + 0.5;
+        p.x = obstacle.x +1.;
+        p.y = obstacle.y +1.;
         p.z = 0.0;
         marker.points.push_back(p);
     }

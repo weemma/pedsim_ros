@@ -11,14 +11,20 @@ sys.path.insert(0, '/home/fran/social-lstm-tf/social_lstm')
 import rospy
 from pedsim_msgs.msg import TrackedPersons
 from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Twist, Vector3
 from std_msgs.msg import String
 from collections import deque
 import numpy as np
 from social_own_sample import MySampler
 from threading import Lock
+from pure_pursuit import PurePursuit
+import math
 
 mutex_robot = Lock()
 mutex_people = Lock()
+
+Hz = 10
+desired_speed = 1.0
 
 def say(name):
     print('Hello ' + name)
@@ -34,7 +40,7 @@ def talker(topic):
         def __init__(self):
             rospy.loginfo("INITIALIZING PYTHON MODULE...")
             rospy.init_node('python_talker', anonymous=True)
-            self.pub = rospy.Publisher('dummy', String, queue_size=10)
+            self.pub = rospy.Publisher('pedbot/control/cmd_vel', Twist, queue_size=10)
             # Length of the observed traj
             self.obs_len = 5
             # Length of the predicted traj
@@ -45,7 +51,12 @@ def talker(topic):
             self.ids = deque(self.obs_len*[],self.obs_len)
             # Positions of the robot
             self.robot = deque(self.obs_len*[],self.obs_len)
-            self.r = rospy.Rate(10)
+            # Last state of the robot (x, y, v, theta)
+            self.last_state = [0.0, 0.0, 0.0, 0.0]
+            # Communication Rate
+            self.r = rospy.Rate(Hz)
+            # Flag to indicate whether new observations are available
+            self.new_data = False
             # Max number of pedestrians
             self.maxNumPeds = 40
             self.model = MySampler()
@@ -58,6 +69,7 @@ def talker(topic):
             '''
             mutex_people.acquire()
             self.readcoord(msg)
+            self.new_data = True
             mutex_people.release()
 
         def callback_robot(self, msg):
@@ -67,6 +79,7 @@ def talker(topic):
             '''
             mutex_robot.acquire()
             self.robot.append([-1, msg.pose.pose.position.x, msg.pose.pose.position.y])
+            self.last_state = [msg.pose.pose.position.x, msg.pose.pose.position.y, msg.twist.twist.linear.x, msg.twist.twist.linear.y]
             mutex_robot.release()
 
         def readcoord(self, msg):
@@ -82,6 +95,14 @@ def talker(topic):
                 ids.append(person.track_id)
             self.ids.append(ids)
             self.people.append(positions)
+
+        def dummy_model(self, nextPos):
+            currPos = self.robot[-1]
+            vx = nextPos[1] - currPos[1]
+            vy = nextPos[2] - currPos[2]
+            theta = math.atan2(vy,vx)
+            velocity = math.hypot(vy,vx)
+            return velocity, theta
 
         def next_batch(self):
             '''
@@ -109,19 +130,35 @@ def talker(topic):
             return data
 
         def talk(self):
+            counter = 0
+            v = []; yaw = []; t = []; x = []; y = []; delta = []
             while not rospy.is_shutdown():
-                if len(self.people) == self.obs_len and len(self.robot) == self.obs_len:
-                    mutex_robot.acquire()
-                    mutex_people.acquire()
+                mutex_robot.acquire()
+                mutex_people.acquire()
+
+                if (len(self.people) == self.obs_len) and (len(self.robot) == self.obs_len) and (self.new_data is True):
                     data = self.next_batch()
-                    mutex_people.release()
-                    mutex_robot.release()
-                    output = self.model.mysample(data, 5)
-                    rospy.loginfo('Computed Trajectory')
-                    rospy.loginfo(output)
-                    rospy.loginfo('That was all')
-                    # TODO create an own msg type
-                    # self.pub.publish(output)
+                    robot_state = self.last_state
+
+                    controller = PurePursuit()
+                    controller.setdt(1.0/Hz)
+                    controller.setState(robot_state)
+                    v = []; yaw = []; t = []; x = []; y = []; delta = []
+                    v, yaw, t, x, y, delta = controller.closed_loop_prediction(data[:,1,1], data[:,1,2], desired_speed)
+                    counter = 0
+                    self.new_data = False
+
+                mutex_people.release()
+                mutex_robot.release()
+
+                if counter < len(v)-1:
+                    # rospy.loginfo(v[counter])
+                    msg = Twist(Vector3(v[counter], 0, 0), Vector3(0, 0, delta[counter]))
+                    self.pub.publish(msg)
+                    counter += 1
+                else:
+                    msg = Twist(Vector3(0, 0, 0), Vector3(0, 0, 0))
+                    self.pub.publish(msg)
                 self.r.sleep()
 
     rosboject = PubAndSub()

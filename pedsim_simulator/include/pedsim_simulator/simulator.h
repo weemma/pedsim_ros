@@ -127,6 +127,7 @@ private:
     ros::Publisher pub_obstacles_; // grid cells
     ros::Publisher pub_all_agents_; // positions and velocities (old msg)
     ros::Publisher pub_tracked_persons_; // in spencer format
+    ros::Publisher pub_goal_;
     ros::Publisher pub_tracked_groups_;
     ros::Publisher pub_social_activities_;
     // - visualization related messages (e.g. markers)

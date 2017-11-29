@@ -18,15 +18,14 @@ set(PEDSIM_SIMULATOR_DEPENDENCIES
     dynamic_reconfigure
 )
 
-## Don't trust these lines
-catkin_python_setup()
-#find_package(rospy)
-
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS ${PEDSIM_SIMULATOR_DEPENDENCIES})
 find_package(Boost REQUIRED)
 find_package(Qt4 REQUIRED)
 find_package(Eigen REQUIRED)
+
+## Python module
+catkin_python_setup()
 
 # dynamic reconfigure parameters
 generate_dynamic_reconfigure_options(config/PedsimSimulator.cfg)
@@ -122,10 +121,21 @@ add_executable(simulate_diff_drive_robot src/simulate_diff_drive_robot.cpp)
 add_dependencies(simulate_diff_drive_robot ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simulate_diff_drive_robot ${BOOST_LIBRARIES} ${catkin_LIBRARIES})
 
+#add_executable(transpose src/transpose.cpp)
+#add_dependencies(transpose ${catkin_EXPORTED_TARGETS})
+#target_link_libraries(transpose ${BOOST_LIBRARIES} ${catkin_LIBRARIES})
+
+add_executable(dataset_saver src/dataset_saver.cpp src/transpose.cpp)
+add_dependencies(dataset_saver ${catkin_EXPORTED_TARGETS})
+target_link_libraries(dataset_saver ${BOOST_LIBRARIES} ${catkin_LIBRARIES})
+
+
 install(
     TARGETS
         pedsim_simulator
         simulate_diff_drive_robot
+				dataset_saver
+#				transpose
     ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
     RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

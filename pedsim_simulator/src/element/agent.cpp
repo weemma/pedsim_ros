@@ -189,6 +189,8 @@ void Agent::move(double h)
         }
     }
     else {
+        Ped::Tagent::setForceFactorSocial(CONFIG.forceSocial * 2);
+//        Ped::Tagent::setForceFactorObstacle(CONFIG.forceObstacle);
         Ped::Tagent::move(h);
     }
 
