@@ -96,8 +96,9 @@ public:
         // sampling rate
         nh_.param("/data_saver/rate", rate_, 2.5);
 
-        // Dataset path
+        // Dataset params
         nh_.param<std::string>("/data_saver/path", path_, "pedsim_pos.csv");
+        nh_.param("/data_saver/size", size_, 100.0);
 
         // Open dataset
         dataset_.open(path_);
@@ -148,6 +149,7 @@ private:
 
     // Sampling rate
     double rate_;
+    double size_;
 
     std::string robot_frame_;
 
@@ -178,7 +180,7 @@ protected:
 void PedsimData::run()
 {
     ros::Rate r(rate_); // Hz
-    while (ros::ok() && counter_ < 15) {
+    while (ros::ok() && counter_ < size_) {
         ros::spinOnce();
         r.sleep();
     }
@@ -211,7 +213,8 @@ bool PedsimData::inLocalZone(const std::array<double, 2>& point)
 
 /// -----------------------------------------------------------
 /// \function callbackTrackedPersons
-/// \brief Receives tracked persons messages and saves them
+/// \brief Receives tracked persons messages and store them into a dataset format
+/// The scheme of the CSV file is: Frame_id | Ped_id | Pos_y | Pos_x | Twist_x | Twist_y | Or_z | Or_w | Goal_x | Goal_y
 /// -----------------------------------------------------------
 void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPersons::ConstPtr& msg)
 {
@@ -234,7 +237,7 @@ void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPers
     double goal_x = 2.0*robot_goal_[0]/global_width_-1.0;
     double goal_y = 2.0*robot_goal_[1]/global_height_-1.0;
 
-    dataset_ << counter_ << ',' << robot.track_id << ',' << ego_x << ',' << ego_y << ','
+    dataset_ << counter_ << ',' << robot.track_id << ',' << ego_y << ',' << ego_x << ','
              << robot.twist.twist.linear.x << ',' << robot.twist.twist.linear.y << ','
              << robot.pose.pose.orientation.z << ',' << robot.pose.pose.orientation.w << ','
              << goal_x << ',' << goal_y << ',' <<  std::endl;
@@ -246,7 +249,7 @@ void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPers
         if (inside) {
             double pos_x = 2.0*p.pose.pose.position.x/global_width_-1.0;
             double pos_y = 2.0*p.pose.pose.position.y/global_height_-1.0;
-            dataset_ << counter_ << ',' << p.track_id << ',' << pos_x << ',' << pos_y << ','
+            dataset_ << counter_ << ',' << p.track_id << ',' << pos_y << ',' << pos_x << ','
                      << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
                      << p.pose.pose.orientation.z << ',' << p.pose.pose.orientation.w << ','
                      << 0.0 << ',' << 0.0 << ',' <<  std::endl;
