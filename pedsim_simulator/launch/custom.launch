@@ -32,7 +32,7 @@
         <param name="global_width" value="50.0" type="double"/>
         <param name="global_height" value="50.0" type="double"/>
         <param name="rate" value="2.5" type="double"/>
-        <param name="path" value="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/pedsim_data.csv"/>
+        <param name="path" value="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/pedsim_training"/>
 				<param name="size" value="15000" type="int"/>
   </node>
 

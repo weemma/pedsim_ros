@@ -97,8 +97,9 @@ public:
         nh_.param("/data_saver/rate", rate_, 2.5);
 
         // Dataset params
-        nh_.param<std::string>("/data_saver/path", path_, "pedsim_pos.csv");
+        nh_.param<std::string>("/data_saver/path", path_, "pedsim_pos");
         nh_.param("/data_saver/size", size_, 100.0);
+        path_ = path_+ "_" + std::to_string(static_cast<int>(size_)) + ".csv";
 
         // Open dataset
         dataset_.open(path_);
@@ -237,8 +238,13 @@ void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPers
     double goal_x = 2.0*robot_goal_[0]/global_width_-1.0;
     double goal_y = 2.0*robot_goal_[1]/global_height_-1.0;
 
-    dataset_ << counter_ << ',' << robot.track_id << ',' << ego_y << ',' << ego_x << ','
-             << robot.twist.twist.linear.x << ',' << robot.twist.twist.linear.y << ','
+    double vel_x = robot.twist.twist.linear.x;
+    double vel_y = robot.twist.twist.linear.y;
+    if (vel_x > 10)        vel_x = vel_x/1000.0;
+    if (vel_y > 10)        vel_y = vel_y/1000.0;
+
+    dataset_ << counter_ << ',' << robot.track_id+1 << ',' << ego_y << ',' << ego_x << ','
+             << vel_x << ',' << vel_y << ','
              << robot.pose.pose.orientation.z << ',' << robot.pose.pose.orientation.w << ','
              << goal_x << ',' << goal_y << ',' <<  std::endl;
 
@@ -249,8 +255,12 @@ void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPers
         if (inside) {
             double pos_x = 2.0*p.pose.pose.position.x/global_width_-1.0;
             double pos_y = 2.0*p.pose.pose.position.y/global_height_-1.0;
-            dataset_ << counter_ << ',' << p.track_id << ',' << pos_y << ',' << pos_x << ','
-                     << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
+            double vel_x = p.twist.twist.linear.x;
+            double vel_y = p.twist.twist.linear.y;
+            if (vel_x > 10)        vel_x = vel_x/1000.0;
+            if (vel_y > 10)        vel_y = vel_y/1000.0;
+            dataset_ << counter_ << ',' << p.track_id+1 << ',' << pos_y << ',' << pos_x << ','
+                     << vel_x << ',' << vel_y << ','
                      << p.pose.pose.orientation.z << ',' << p.pose.pose.orientation.w << ','
                      << 0.0 << ',' << 0.0 << ',' <<  std::endl;
         }
