@@ -96,10 +96,13 @@ public:
         // sampling rate
         nh_.param("/data_saver/rate", rate_, 2.5);
 
+        // flip param
+        nh_.param("/data_saver/flip", flip_, 1);
+
         // Dataset params
         nh_.param<std::string>("/data_saver/path", path_, "pedsim_pos");
         nh_.param("/data_saver/size", size_, 100.0);
-        path_ = path_+ "_" + std::to_string(static_cast<int>(size_)) + ".csv";
+        path_ = path_+ "_" + std::to_string(static_cast<int>(size_)) + std::to_string(static_cast<int>(flip_)) + ".csv";
 
         // Open dataset
         dataset_.open(path_);
@@ -151,6 +154,8 @@ private:
     // Sampling rate
     double rate_;
     double size_;
+    // flip param
+    int flip_;
 
     std::string robot_frame_;
 
@@ -243,29 +248,94 @@ void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPers
     if (vel_x > 10)        vel_x = vel_x/1000.0;
     if (vel_y > 10)        vel_y = vel_y/1000.0;
 
-    dataset_ << counter_ << ',' << robot.track_id+1 << ',' << ego_y << ',' << ego_x << ','
-             << vel_x << ',' << vel_y << ','
-             << robot.pose.pose.orientation.z << ',' << robot.pose.pose.orientation.w << ','
-             << goal_x << ',' << goal_y << ',' <<  std::endl;
+    double aux=0;
+    double angle = atan2(robot.pose.pose.orientation.z,robot.pose.pose.orientation.w);
 
-    for (unsigned int i = 1; i < msg->tracks.size(); i++) {
-        spencer_tracking_msgs::TrackedPerson p = msg->tracks[i];
-        std::array<double, 2> person = { p.pose.pose.position.x, p.pose.pose.position.y };
-        const bool inside = inLocalZone(person);
-        if (inside) {
-            double pos_x = 2.0*p.pose.pose.position.x/global_width_-1.0;
-            double pos_y = 2.0*p.pose.pose.position.y/global_height_-1.0;
-            double vel_x = p.twist.twist.linear.x;
-            double vel_y = p.twist.twist.linear.y;
-            if (vel_x > 10)        vel_x = vel_x/1000.0;
-            if (vel_y > 10)        vel_y = vel_y/1000.0;
-            dataset_ << counter_ << ',' << p.track_id+1 << ',' << pos_y << ',' << pos_x << ','
-                     << vel_x << ',' << vel_y << ','
-                     << p.pose.pose.orientation.z << ',' << p.pose.pose.orientation.w << ','
-                     << 0.0 << ',' << 0.0 << ',' <<  std::endl;
+    double quat_z = robot.pose.pose.orientation.z;
+    double quat_w = robot.pose.pose.orientation.w;
+
+    if ((goal_x > -0.99) || (goal_y > -0.99))
+    {
+
+
+        switch (flip_) {
+            case 1 :
+                break;
+            case 2 : {      // flip 90 degrees
+                aux = ego_x;
+                ego_x = ego_y;
+                ego_y = 1 - aux;
+
+                aux = vel_x;
+                vel_x = vel_y;
+                vel_y = 1 - aux;
+
+                aux = goal_x;
+                goal_x = goal_y;
+                goal_y = 1 - aux;
+
+                quat_w = cos(angle + M_PI_4);
+                quat_z = sin(angle + M_PI_4);
+
+                break;
+            }
+            case 3 : {      // flip 180 degrees
+                ego_x = 1 - ego_x;
+                ego_y = 1 - ego_y;
+
+                vel_x = 1 - vel_x;
+                vel_y = 1 - vel_y;
+
+                aux = goal_x;
+                goal_x = 1 - goal_x;
+                goal_y = 1 - goal_y;
+
+                quat_w = cos(angle + M_PI_2);
+                quat_z = sin(angle + M_PI_2);
+                break;
+            }
+            case 4 : {      // flip 270 degrees
+                aux = ego_x;
+                ego_x = 1 - ego_y;
+                ego_y = aux;
+
+                aux = vel_x;
+                vel_x = 1 - vel_y;
+                vel_y = aux;
+
+                aux = goal_x;
+                goal_x = 1 - goal_y;
+                goal_y = aux;
+
+                quat_w = cos(angle - M_PI_4);
+                quat_z = sin(angle - M_PI_4);
+                break;
+            }
         }
+        dataset_ << counter_ << ',' << robot.track_id + 1 << ',' << ego_y << ',' << ego_x << ','
+                 << vel_x << ',' << vel_y << ','
+                 << quat_z << ',' << quat_w << ','
+                 << goal_x << ',' << goal_y << ',' << std::endl;
+
+        for (unsigned int i = 1; i < msg->tracks.size(); i++) {
+            spencer_tracking_msgs::TrackedPerson p = msg->tracks[i];
+            std::array<double, 2> person = {p.pose.pose.position.x, p.pose.pose.position.y};
+            const bool inside = inLocalZone(person);
+            if (inside) {
+                double pos_x = 2.0 * p.pose.pose.position.x / global_width_ - 1.0;
+                double pos_y = 2.0 * p.pose.pose.position.y / global_height_ - 1.0;
+                double vel_x = p.twist.twist.linear.x;
+                double vel_y = p.twist.twist.linear.y;
+                if (vel_x > 10) vel_x = vel_x / 1000.0;
+                if (vel_y > 10) vel_y = vel_y / 1000.0;
+                dataset_ << counter_ << ',' << p.track_id + 1 << ',' << pos_y << ',' << pos_x << ','
+                         << vel_x << ',' << vel_y << ','
+                         << p.pose.pose.orientation.z << ',' << p.pose.pose.orientation.w << ','
+                         << 0.0 << ',' << 0.0 << ',' << std::endl;
+            }
+        }
+        counter_ += 1;
     }
-    counter_+=1;
 }
 
 

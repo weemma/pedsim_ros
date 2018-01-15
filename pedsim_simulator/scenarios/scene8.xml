@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+    <!--Obstacles-->
+    <obstacle x1="1" y1="1" x2="50" y2="1"/>
+    <obstacle x1="1" y1="1" x2="1" y2="50"/>
+    <obstacle x1="1" y1="50" x2="50" y2="50"/>
+    <obstacle x1="50" y1="50" x2="50" y2="1"/>
+
+    <!--Obs Loop1-->
+    <obstacle x1="1" y1="15" x2="15" y2="15"/>
+    <obstacle x1="15" y1="1" x2="15" y2="15"/>
+    <!--Obs Loop2-->
+    <obstacle x1="36" y1="36" x2="36" y2="50"/>
+    <obstacle x1="36" y1="36" x2="50" y2="36"/>
+
+    <!--Obs Loop3-->
+		<obstacle x1="8" y1="22" x2="29" y2="22"/>
+		<obstacle x1="29" y1="22" x2="29" y2="43"/>
+		<obstacle x1="29" y1="43" x2="22" y2="43"/>
+		<obstacle x1="22" y1="43" x2="22" y2="29"/>
+		<obstacle x1="22" y1="29" x2="8" y2="29"/>
+		<obstacle x1="8" y1="29" x2="8" y2="22"/>
+
+    <!--Obs Loop4-->
+		<obstacle x1="22" y1="8" x2="43" y2="8"/>
+		<obstacle x1="43" y1="8" x2="43" y2="29"/>
+    <obstacle x1="43" y1="29" x2="36" y2="29"/>
+    <obstacle x1="36" y1="29" x2="36" y2="15"/>
+    <obstacle x1="36" y1="15" x2="22" y2="15"/>
+    <obstacle x1="22" y1="15" x2="22" y2="8"/>
+
+
+
+		<!--Inner Obstacles-->
+    <!--obstacle x1="15" y1="24" x2="16" y2="24"/>
+    <obstacle x1="15" y1="7" x2="16" y2="7"/>
+    <obstacle x1="25" y1="18" x2="25" y2="12"/>
+    <obstacle x1="27" y1="35" x2="27" y2="36"/>
+    <obstacle x1="34" y1="5" x2="35" y2="5"/>
+    <obstacle x1="47" y1="37" x2="47" y2="37"/>
+    <obstacle x1="44" y1="24" x2="44" y2="24"-->
+
+		<!--Central Obstacle-->
+    <!--obstacle x1="25" y1="25" x2="26" y2="25"/>
+    <obstacle x1="25" y1="26" x2="26" y2="26"/>
+    <obstacle x1="25" y1="25" x2="25" y2="26"/>
+    <obstacle x1="26" y1="25" x2="26" y2="26"-->
+
+    <!--Waypoints (incl. WaitingQueues)-->
+    <waypoint id="d_l" x="5" y="5" r="2"/>
+    <waypoint id="d_m" x="25" y="5" r="2"/>
+    <waypoint id="d_r" x="45" y="5" r="2"/>
+    <waypoint id="m_l" x="5" y="25" r="2"/>
+    <waypoint id="m_m" x="25" y="25" r="2"/>
+    <waypoint id="u_m" x="25" y="45" r="2"/>
+    <waypoint id="u_r" x="45" y="45" r="2"/>
+
+    <!--Attractions-->
+    <!--Agents-->
+    <!--Robot type 2 -->
+    <agent x="5" y="5" n="1" dx="1" dy="1" type="1">
+
+        <addwaypoint id="d_l"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="d_r"/>
+        <addwaypoint id="u_r"/>
+        <addwaypoint id="u_m"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="d_l"/>
+        <addwaypoint id="m_l"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="u_m"/>
+        <addwaypoint id="u_r"/>
+        <addwaypoint id="d_r"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="m_l"/>
+    </agent>
+    <!--AgentClusters-->
+		<!--Cluster 1.1-->
+    <agent x="5" y="15" n="7" dx="7" dy="7" type="1">
+        <addwaypoint id="m_l"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="d_l"/>
+    </agent>
+		<!--Cluster 1.2-->
+    <agent x="25" y="15" n="7" dx="7" dy="7" type="1">
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="d_l"/>
+        <addwaypoint id="m_l"/>
+        <addwaypoint id="m_m"/>
+    </agent>
+		<!--Cluster 2.1-->
+    <agent x="45" y="25" n="7" dx="7" dy="7" type="1">
+        <addwaypoint id="d_r"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="u_m"/>
+        <addwaypoint id="u_r"/>
+
+    </agent>
+		<!--Cluster 2.2-->
+    <agent x="25" y="5" n="7" dx="7" dy="7" type="1">
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="u_m"/>
+        <addwaypoint id="u_r"/>
+        <addwaypoint id="d_r"/>
+    </agent>
+		<!--Cluster 2.3-->
+    <agent x="25" y="45" n="7" dx="7" dy="7" type="1">
+        <addwaypoint id="u_m"/>
+        <addwaypoint id="u_r"/>
+        <addwaypoint id="d_r"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="m_m"/>
+    </agent>
+		<!--Cluster 3.1-->
+    <agent x="25" y="25" n="5" dx="7" dy="7" type="1">
+        <addwaypoint id="m_l"/>
+        <addwaypoint id="d_l"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="d_r"/>
+        <addwaypoint id="u_r"/>        
+				<addwaypoint id="u_m"/>
+        <addwaypoint id="m_m"/>
+    </agent>
+		<!--Cluster 3.2-->
+    <agent x="45" y="5" n="5" dx="7" dy="7" type="1">
+        <addwaypoint id="u_r"/>        
+				<addwaypoint id="u_m"/>
+        <addwaypoint id="m_m"/>
+        <addwaypoint id="m_l"/>
+        <addwaypoint id="d_l"/>
+        <addwaypoint id="d_m"/>
+        <addwaypoint id="d_r"/>
+
+    </agent>
+</scenario>

@@ -12,11 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a278e7f8-59be-4d9c-a6dc-6e99e4c7456c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene4.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/launch/custom.launch" afterPath="$PROJECT_DIR$/pedsim_simulator/launch/custom.launch" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/rviz/social_contexts_activities.rviz" afterPath="$PROJECT_DIR$/pedsim_simulator/rviz/social_contexts_activities.rviz" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene6.xml" afterPath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene6.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/launch/training.launch" afterPath="$PROJECT_DIR$/pedsim_simulator/launch/training.launch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/launch/validation.launch" afterPath="$PROJECT_DIR$/pedsim_simulator/launch/validation.launch" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene1.xml" afterPath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene2.xml" afterPath="$PROJECT_DIR$/pedsim_simulator/scenarios/scene2.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/src/dataset_saver.cpp" afterPath="$PROJECT_DIR$/pedsim_simulator/src/dataset_saver.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/src/pedsim_training_15000.csv" afterPath="$PROJECT_DIR$/pedsim_simulator/src/pedsim_training_15000.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pedsim_simulator/src/pedsim_validation_1500.csv" afterPath="$PROJECT_DIR$/pedsim_simulator/src/pedsim_validation_1500.csv" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,8 +66,8 @@
       <file leaf-file-name="dataset_saver.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/dataset_saver.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="113" column="43" lean-forward="true" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
+            <state relative-caret-position="189">
+              <caret line="85" column="60" lean-forward="false" selection-start-line="85" selection-start-column="60" selection-end-line="85" selection-end-column="60" />
               <folding>
                 <element signature="e#1816#1833#0" expanded="true" />
               </folding>
@@ -136,8 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getid</find>
-      <find>get</find>
       <find>destination</find>
       <find>getVisiblePosition()</find>
       <find>getcurrentway</find>
@@ -164,8 +167,10 @@
       <find>size</find>
       <find>size_</find>
       <find>dataset_</find>
-      <find>path_</find>
       <find>ped</find>
+      <find>path_</find>
+      <find>flip_</find>
+      <find>12</find>
     </findStrings>
     <replaceStrings>
       <replace>Data</replace>
@@ -199,7 +204,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="y" value="24" />
     <option name="width" value="1920" />
     <option name="height" value="1032" />
@@ -359,18 +364,21 @@
       <workItem from="1511386154245" duration="529000" />
       <workItem from="1511869546409" duration="854000" />
       <workItem from="1511940800266" duration="18970000" />
-      <workItem from="1512638184727" duration="8192000" />
+      <workItem from="1512638184727" duration="9977000" />
+      <workItem from="1514465674046" duration="5845000" />
+      <workItem from="1514811575215" duration="644000" />
+      <workItem from="1515571680839" duration="597000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50461000" />
+    <option name="totallyTimeSpent" value="59332000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1920" height="1032" extended-state="6" />
+    <frame x="0" y="-4" width="1920" height="1060" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27239582" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -583,9 +591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="224" column="12" lean-forward="false" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="25" />
-          <folding>
-            <element signature="e#1785#1802#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -607,17 +612,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/pedsim_data.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/pedsim_data.csv" />
     <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/orientationhandler.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -664,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="40" column="51" lean-forward="false" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,26 +693,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pedsim/include/pedsim/ped_vector.h">
+    <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/simulator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="9108">
+          <caret line="506" column="0" lean-forward="false" selection-start-line="506" selection-start-column="0" selection-end-line="506" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/element/areawaypoint.cpp">
+    <entry file="file://$PROJECT_DIR$/pedsim_simulator/include/pedsim_simulator/simulator.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pedsim/src/ped_waypoint.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="32" column="55" lean-forward="false" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
+        <state relative-caret-position="2520">
+          <caret line="140" column="19" lean-forward="false" selection-start-line="140" selection-start-column="19" selection-end-line="140" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -736,6 +725,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pedsim/src/ped_waypoint.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="55" lean-forward="false" selection-start-line="32" selection-start-column="55" selection-end-line="32" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/element/areawaypoint.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pedsim/include/pedsim/ped_waypoint.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -743,6 +748,14 @@
           <folding>
             <element signature="e#250#273#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pedsim/include/pedsim/ped_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -754,26 +767,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/simulator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9108">
-          <caret line="506" column="0" lean-forward="false" selection-start-line="506" selection-start-column="0" selection-end-line="506" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pedsim_simulator/include/pedsim_simulator/simulator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2520">
-          <caret line="140" column="19" lean-forward="false" selection-start-line="140" selection-start-column="19" selection-end-line="140" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pedsim_simulator/src/dataset_saver.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="113" column="43" lean-forward="true" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
+        <state relative-caret-position="189">
+          <caret line="85" column="60" lean-forward="false" selection-start-line="85" selection-start-column="60" selection-end-line="85" selection-end-column="60" />
           <folding>
             <element signature="e#1816#1833#0" expanded="true" />
           </folding>
