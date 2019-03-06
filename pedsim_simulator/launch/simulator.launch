@@ -6,9 +6,9 @@
   <arg name="max_robot_speed" default="1.5"/>
   <arg name="robot_mode" default="1"/>
   <arg name="enable_groups" default="true"/>
-  <arg name="with_robot" default="false"/>
-  <arg name="pose_initial_x" default="5.0"/>
-  <arg name="pose_initial_y" default="5.0"/>
+  <arg name="with_robot" default="true"/>
+  <arg name="pose_initial_x" default="10.0"/>
+  <arg name="pose_initial_y" default="2.0"/>
   <arg name="pose_initial_theta" default="0.0"/>
 
   <!-- main simulator node -->
@@ -29,15 +29,6 @@
       <param name="pose_initial_theta" value="$(arg pose_initial_theta)"/>
     </node>
 
-    <!-- Keyboard robot steering -->
-    <node pkg="pedsim_simulator" name="pedsim_keyboard_teleop" type="keyboard_teleop.py" output="screen" if="$(arg kbd_teleop)">
-      <remap from="/pedbot/control/pedsim_keyboard_teleop/cmd_vel" to="/pedbot/control/cmd_vel"/>
-    </node>
-
-    <!-- RQT robot steering -->
-    <node pkg="rqt_robot_steering" name="rqt_robot_steering" type="rqt_robot_steering" if="$(arg rqt_teleop)">
-      <remap from="/cmd_vel" to="/pedbot/control/cmd_vel"/>
-    </node>
   </group>
 
 </launch>
