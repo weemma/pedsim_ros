@@ -3,6 +3,19 @@
   <arg name="rqt_teleop" default="true"/>
   <arg name="visualize" default="true"/>
 
+  <!-- Dataset saver -->
+  <node name="data_saver" pkg="pedsim_simulator" type="dataset_saver" output="screen">
+        <param name="local_width" value="10.0" type="double"/>
+        <param name="local_height" value="10.0" type="double"/>
+        <param name="global_width" value="50.0" type="double"/>
+        <param name="global_height" value="50.0" type="double"/>
+        <param name="rate" value="2.5" type="double"/>
+        <param name="path" value="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/pedsim_training"/>
+      	<!--param name="size" value="15000" type="int"-->
+  		<param name="size" value="3750" type="int"/>
+  		<param name="flip" value="1" type="int"/>
+  </node>
+
   <!-- Simulator -->
   <include file="$(find pedsim_simulator)/launch/simulator.launch">
     <arg name="kbd_teleop" value="$(arg kbd_teleop)"/>

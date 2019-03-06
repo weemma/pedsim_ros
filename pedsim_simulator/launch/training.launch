@@ -1,0 +1,72 @@
+<launch>
+  <arg name="kbd_teleop" default="false"/>
+  <arg name="rqt_teleop" default="true"/>
+
+  <!-- main simulator node -->
+  <node name="pedsim_simulator" pkg="pedsim_simulator" type="pedsim_simulator" output="screen">
+      <!-- 0 - headless, 1 - minimal, 2 - full -->
+      <param name="visual_mode" value="0" type="int"/>
+      <param name="scene_file" value="$(find pedsim_simulator)scenarios/scene1.xml" type="string"/>
+			<!--param name="scene_file" value="$(find pedsim_simulator)scenarios/social_contexts.xml" type="string"-->
+      <param name="default_queue_size" value="10"/>
+      <param name="max_robot_speed" value="1.5" type="double"/>
+      <param name="robot_mode" value="1" type="int"/>
+      <param name="force_social" value="5." type="double"/>
+			<param name="force_wall" value="2." type="double"/>
+			<param name="sigma_obstacle" value="0.6" type="double"/>
+			<param name="force_obstacle" value="8." type="double"/>
+  </node>
+
+  <!-- Rviz -->
+  <!--node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities.rviz"-->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities.rviz"/>
+
+  <!-- Load Robot's simulated sensors. -->
+  <include file="$(find pedsim_point_clouds)/launch/run_pedsim_clouds.launch">
+  </include>
+
+  <!-- Dataset saver -->
+  <node name="data_saver" pkg="pedsim_simulator" type="dataset_saver" output="screen">
+        <param name="local_width" value="10.0" type="double"/>
+        <param name="local_height" value="10.0" type="double"/>
+        <param name="global_width" value="50.0" type="double"/>
+        <param name="global_height" value="50.0" type="double"/>
+        <param name="rate" value="2.5" type="double"/>
+        <param name="path" value="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/pedsim_training"/>
+				<!--param name="size" value="15000" type="int"-->
+				<param name="size" value="3750" type="int"/>
+				<param name="flip" value="1" type="int"/>
+  </node>
+
+  <!-- Robot control -->
+  <group ns="/pedbot/control">
+    <!-- robot driving controller -->
+    <node name="driving_controller" type="simulate_diff_drive_robot" pkg="pedsim_simulator" output="screen">
+        <param name="pose_initial_x" value="4.0"/>
+        <param name="pose_initial_y" value="4.0"/>
+        <param name="pose_initial_theta" value="0.70"/>
+				<!-- Parameters Scene1 -->
+        <!--param name="pose_initial_x" value="35"-->
+        <!--param name="pose_initial_y" value="40"-->
+        <!--param name="pose_initial_theta" value="5"-->
+    </node>
+
+    <!-- Keyboard robot steering -->
+    <node pkg="pedsim_simulator" name="pedsim_keyboard_teleop" type="keyboard_teleop.py" output="screen" if="$(arg kbd_teleop)">
+        <remap from="/pedbot/control/pedsim_keyboard_teleop/cmd_vel" to="/pedbot/control/cmd_vel"/>
+    </node>
+
+    <!-- RQT robot steering -->
+    <node pkg="rqt_robot_steering" name="rqt_robot_steering" type="rqt_robot_steering" if="$(arg rqt_teleop)">
+        <remap from="/cmd_vel" to="/pedbot/control/cmd_vel"/>
+    </node>
+
+  </group>
+
+  <!-- Load Jackal's description, controllers, and teleop nodes. -->
+  <include file="$(find jackal_description)/launch/description.launch">
+    <arg name="config" value="base" />
+  </include>
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+
+</launch>

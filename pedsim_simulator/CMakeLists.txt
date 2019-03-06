@@ -117,10 +117,15 @@ add_executable(simulate_diff_drive_robot src/simulate_diff_drive_robot.cpp)
 add_dependencies(simulate_diff_drive_robot ${catkin_EXPORTED_TARGETS})
 target_link_libraries(simulate_diff_drive_robot ${BOOST_LIBRARIES} ${catkin_LIBRARIES})
 
+add_executable(dataset_saver src/data_saver.cpp src/transpose.cpp)
+add_dependencies(dataset_saver ${catkin_EXPORTED_TARGETS})
+target_link_libraries(dataset_saver ${BOOST_LIBRARIES} ${catkin_LIBRARIES})
+
 install(
   TARGETS
     ${EXECUTABLE_NAME}
     simulate_diff_drive_robot
+		dataset_saver
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
