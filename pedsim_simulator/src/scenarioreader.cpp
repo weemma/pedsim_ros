@@ -91,6 +91,7 @@ void ScenarioReader::processData() {
       const double y2 = elementAttributes.value("y2").toString().toDouble();
       Obstacle* obs = new Obstacle(x1, y1, x2, y2);
       SCENE.addObstacle(obs);
+
     } else if (elementName == "waypoint") {
       const QString id = elementAttributes.value("id").toString();
       const double x = elementAttributes.value("x").toString().toDouble();

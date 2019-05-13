@@ -364,6 +364,10 @@ void Simulator::publishObstacles() {
   sim_obstacles.header = createMsgHeader();
   for (const auto& obstacle : SCENE.getObstacles()) {
     pedsim_msgs::LineObstacle line_obstacle;
+    //ROS_INFO_STREAM("obstacle->getax(): "<< obstacle->getax());
+    //ROS_INFO_STREAM("obstacle->getay(): "<< obstacle->getay());
+    //ROS_INFO_STREAM("obstacle->gebx(): "<< obstacle->getbx());
+    //ROS_INFO_STREAM("obstacle->getby(): "<< obstacle->getby());
     line_obstacle.start.x = obstacle->getax();
     line_obstacle.start.y = obstacle->getay();
     line_obstacle.start.z = 0.0;
