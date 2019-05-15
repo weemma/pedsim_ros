@@ -4,13 +4,6 @@
   <arg name="visualize" default="true"/>
 
   <!-- Dataset saver -->
-  <node name="data_saver" pkg="pedsim_simulator" type="dataset_saver" output="screen">
-        <param name="rate" value="10.0" type="double"/>
-        <param name="path" value="/home/bdebrito/pedsim_ros/datasets/"/>
-      	<!--param name="size" value="220000" type="int"-->
-  		<param name="size" value="55000" type="int"/>
-  </node>
-
   <!-- Simulator -->
   <include file="$(find pedsim_simulator)/launch/simulator.launch">
     <arg name="kbd_teleop" value="$(arg kbd_teleop)"/>
