@@ -2,10 +2,12 @@
 <!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
 <scenario>
     <!--Exterior rectangle-->
-    <!--
-    <obstacle x1="0" y1="-3" x2="20" y2="-3"/>
-    <obstacle x1="0" y1="3" x2="20" y2="3"/>
--->
+    <!-- -->
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0218f5efc985dd081b08229f8d4bcf9784b8c488
+
     <!--Interior rectangle-->
     <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
 
@@ -13,11 +15,11 @@
     <waypoint id="goal_1" x="1" y="0.5" r="2"/>
     <waypoint id="goal_2" x="10" y="0" r="2"/>
     <waypoint id="goal_3" x="20" y="-0.5" r="2"/>
-    <waypoint id="goal_4" x="25" y="0" r="2"/>
+
     <waypoint id="robot_goal" x="-7.5" y="0" r="2"/>
     <waypoint id="robot_start" x="0" y="0" r="0"/>
-
-    <!---->
+	
+<!---->
     <agent x="20" y="2" n="1" dx="10" dy="10" type="2">
         <addwaypoint id="robot_start"/>
         <addwaypoint id="robot_goal"/>
@@ -32,20 +34,5 @@
         <addwaypoint id="goal_1"/>
         <addwaypoint id="goal_3"/>
     </agent>
-    <agent x="5" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_3"/>
-        <addwaypoint id="goal_1"/>
-    </agent>
-    <agent x="15" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_1"/>
-        <addwaypoint id="goal_3"/>
-    </agent>
-    <agent x="10" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_4"/>
-        <addwaypoint id="goal_2"/>
-    </agent>
-    <agent x="25" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_2"/>
-        <addwaypoint id="goal_4"/>
-    </agent>
-</scenario>
+
+    </scenario>
