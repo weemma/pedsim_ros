@@ -1,6 +1,6 @@
 <launch>
   <arg name="kbd_teleop" default="false"/>
-  <arg name="rqt_teleop" default="true"/>
+  <arg name="rqt_teleop" default="false"/>
   <arg name="visualize" default="true"/>
 
   <!-- Dataset saver -->
@@ -8,7 +8,7 @@
         <param name="rate" value="10.0" type="double"/>
         <param name="path" value="/home/bdebrito/pedsim_ros/datasets/"/>
       	<!--param name="size" value="220000" type="int"-->
-  		<param name="size" value="55000" type="int"/>
+  		<param name="size" value="360000" type="int"/>
   </node>
 
   <!-- Simulator -->
