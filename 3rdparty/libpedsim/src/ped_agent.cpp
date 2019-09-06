@@ -35,7 +35,7 @@ Ped::Tagent::Tagent() {
   vmax = distribution(generator);
 
   forceFactorDesired = 1.0;
-  forceFactorSocial = 2.1;
+  forceFactorSocial = 100.1;
   forceFactorObstacle = 10.0;
   forceSigmaObstacle = 0.8;
 
@@ -125,7 +125,7 @@ Ped::Tvector Ped::Tagent::desiredForce() {
 Ped::Tvector Ped::Tagent::socialForce() const {
   // define relative importance of position vs velocity vector
   // (set according to Moussaid-Helbing 2009)
-  const double lambdaImportance = 2.0;
+  const double lambdaImportance = 0.5;
 
   // define speed interaction
   // (set according to Moussaid-Helbing 2009)
@@ -174,7 +174,7 @@ Ped::Tvector Ped::Tagent::socialForce() const {
         -theta.sign() *
         exp(-diff.length() / B - (n * B * thetaRad) * (n * B * thetaRad));
 
-    Tvector forceVelocity = forceVelocityAmount * interactionDirection;
+    Tvector forceVelocity = 2.0*forceVelocityAmount * interactionDirection;
     Tvector forceAngle =
         forceAngleAmount * interactionDirection.leftNormalVector();
 

@@ -139,21 +139,22 @@ Ped::Twaypoint* Agent::updateDestination() {
     }
     currentDestination = destinations.first();
     //if (std::abs(currentDestination->getx())!=1)  {
-        if (currentDestination->getx() < 0 ){
-            rx = std::min(std::max(currentDestination->getx()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),currentDestination->getx()-1.0),currentDestination->getx()+1.0);
-            ry = std::min(std::max(currentDestination->gety()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),-1.0),1.0);
-        }
-        else{
-            rx = std::min(std::max(currentDestination->getx()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),currentDestination->getx()-1.0),currentDestination->getx()+1.0);
-            ry = std::min(std::max(currentDestination->gety()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),-1.0),1.0);
-          }
+    //    if (currentDestination->getx() < 0 ){
+    //        rx = std::min(std::max(currentDestination->getx()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),currentDestination->getx()-1.0),currentDestination->getx()+1.0);
+    //        ry = std::min(std::max(currentDestination->gety()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),-1.0),1.0);
+    //    }
+    //    else{
+    //        rx = std::min(std::max(currentDestination->getx()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),currentDestination->getx()-1.0),currentDestination->getx()+1.0);
+    //        ry = std::min(std::max(currentDestination->gety()-0.5 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(1.0))),-1.0),1.0);
+    //      }
     //}
     //else{
     //    //ROS_INFO_STREAM("Not changing goal");
     //    rx = currentDestination->getx();
     //    ry = currentDestination->gety();
     //}
-
+    rx = currentDestination->getx();
+    ry = currentDestination->gety();
     currentDestination->setx(rx);
     currentDestination->sety(ry);
     //ROS_INFO_STREAM("NEW DESTINY X: " << rx << " y:" << ry);
