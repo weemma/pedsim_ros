@@ -8,7 +8,7 @@
     <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
 
     <!--Waypoints (incl. WaitingQueues)-->
-    <waypoint id="goal_1" x="1" y="0.5" r="2"/>
+    <waypoint id="goal_1" x="-10" y="0.5" r="2"/>
     <waypoint id="goal_2" x="10" y="0" r="2"/>
     <waypoint id="goal_3" x="20" y="-0.5" r="2"/>
 

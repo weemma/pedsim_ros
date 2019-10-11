@@ -116,7 +116,7 @@ bool Simulator::initializeSimulation() {
   nh_.param<int>("robot_mode", op_mode, 1);
   CONFIG.robot_mode = static_cast<RobotMode>(op_mode);
 
-  paused_ = true;
+  paused_ = false;
 
   spawn_timer_ =
       nh_.createTimer(ros::Duration(5.0), &Simulator::spawnCallback, this);
