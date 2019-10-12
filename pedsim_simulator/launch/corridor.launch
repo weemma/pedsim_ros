@@ -21,6 +21,6 @@
   <include file="$(find pedsim_visualizer)/launch/visualizer.launch"/>
 
   <!-- Rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/airport.rviz" if="$(arg visualize)"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/corridor.rviz" if="$(arg visualize)"/>
 
 </launch>
