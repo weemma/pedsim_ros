@@ -8,12 +8,19 @@
     <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
 
     <!--Waypoints (incl. WaitingQueues)-->
-    <waypoint id="robot_goal" x="10" y="-5" r="2"/>
-    <waypoint id="robot_start" x="10" y="5" r="0"/>
-
-    <!---->
-    <agent x="10" y="-7" n="1" dx="10" dy="10" type="2">
-        <addwaypoint id="robot_start"/>
-        <addwaypoint id="robot_goal"/>
+    <waypoint id="goal_1" x="18" y="-10" r="2"/>
+    <waypoint id="goal_2" x="18" y="10" r="2"/>
+      
+    <agent x="20" y="2" n="1" dx="18" dy="10" type="2">
+        <addwaypoint id="goal_2"/>
+        <addwaypoint id="goal_1"/>
     </agent>
+
+
+    <!--AgentClusters-->
+    <agent x="18" y="10" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_2"/>
+        <addwaypoint id="goal_1"/>
+    </agent>
+
 </scenario>
