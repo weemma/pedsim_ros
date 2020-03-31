@@ -111,6 +111,8 @@ bool Simulator::initializeSimulation() {
 
   nh_.param<bool>("enable_groups", CONFIG.groups_enabled, true);
   nh_.param<double>("max_robot_speed", CONFIG.max_robot_speed, 1.5);
+  nh_.param<double>("update_rate", CONFIG.updateRate, 25.0);
+  nh_.param<double>("simulation_factor", CONFIG.simulationFactor, 1.0);
 
   int op_mode = 1;
   nh_.param<int>("robot_mode", op_mode, 1);
@@ -126,8 +128,9 @@ bool Simulator::initializeSimulation() {
 
 void Simulator::runSimulation() {
   ros::Rate r(CONFIG.updateRate);
+
   while (ros::ok()) {
-    if (SCENE.getTime() < 0.1) {
+    if (!robot_) {
       // setup the robot
       for (Agent* agent : SCENE.getAgents()) {
         if (agent->getType() == Ped::Tagent::ROBOT) {
@@ -364,10 +367,10 @@ void Simulator::publishObstacles() {
   sim_obstacles.header = createMsgHeader();
   for (const auto& obstacle : SCENE.getObstacles()) {
     pedsim_msgs::LineObstacle line_obstacle;
-    ROS_INFO_STREAM("start x: "<< obstacle->getax());
-    ROS_INFO_STREAM("start y : "<< obstacle->getay());
-    ROS_INFO_STREAM("end x: "<< obstacle->getbx());
-    ROS_INFO_STREAM("end y: "<< obstacle->getby());
+    //ROS_INFO_STREAM("start x: "<< obstacle->getax());
+    //ROS_INFO_STREAM("start y : "<< obstacle->getay());
+    //ROS_INFO_STREAM("end x: "<< obstacle->getbx());
+    //ROS_INFO_STREAM("end y: "<< obstacle->getby());
     line_obstacle.start.x = obstacle->getax();
     line_obstacle.start.y = obstacle->getay();
     line_obstacle.start.z = 0.0;

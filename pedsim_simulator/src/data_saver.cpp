@@ -84,7 +84,7 @@ public:
         // Dataset params
         nh_.param<std::string>("/data_saver/path", path_, "pedsim_pos");
         nh_.param("/data_saver/size", size_, 100.0);
-        path_ = path_+ "cross_scenario.csv";
+        path_ = path_+ "total_log.csv";
 
         // Open dataset
         dataset_.open(path_);
@@ -169,13 +169,14 @@ protected:
 void PedsimData::run()
 {
     ros::Rate r(rate_); // Hz
+    ROS_INFO_STREAM("Started recording");
     while (ros::ok() && counter_ < size_) {
         ros::spinOnce();
         r.sleep();
-        if(counter_ % 1000 == 1)
+        if(counter_ % 1000 < 10)
             ROS_INFO_STREAM("Step: " << counter_);
     }
-    //transpose_CSV(path_);
+    ROS_INFO_STREAM("Done recording");
 }
 
 /// -----------------------------------------------------------
@@ -219,13 +220,13 @@ void PedsimData::callbackTrackedPersons(const pedsim_msgs::TrackedPersons::Const
             dataset_ << p.track_id << ',' << msg->header.stamp.sec << ',' << msg->header.stamp.nsec << ','
                      << p.pose.pose.position.x << ',' << p.pose.pose.position.y<< ','
                      << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
-                     << 20.0     << ',' << 2.0  << std::endl;
+                     << 10.0     << ',' << 0.0  << std::endl;
         }
         else{
             dataset_ << p.track_id << ',' << msg->header.stamp.sec << ',' << msg->header.stamp.nsec << ','
                      << p.pose.pose.position.x << ',' << p.pose.pose.position.y<< ','
                      << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
-                     << 2.0     << ',' << 2.0  << std::endl;
+                     << -10.0     << ',' << 0.0  << std::endl;
         }
         counter_ += 1;
     }

@@ -24,7 +24,7 @@
     <param name="update_rate" value="$(arg update_rate)" type="double"/>
   </node>
 
-  <!-- Robot controller (optional)
+  <!-- Robot controller (optional) -->
   <group ns="pedbot/control" if="$(arg with_robot)">
     <include file="$(find pedsim_simulator)/launch/robot_controller.launch">
       <arg name="pose_initial_x" value="$(arg pose_initial_x)"/>
@@ -32,5 +32,5 @@
       <arg name="pose_initial_theta" value="$(arg pose_initial_theta)"/>
     </include>
   </group>
--->
+
 </launch>

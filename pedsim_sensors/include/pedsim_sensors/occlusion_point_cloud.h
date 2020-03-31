@@ -1,5 +1,5 @@
 /**
-* Copyright 2014 Social Robotics Lab, University of Freiburg
+* Copyright 2014- Social Robotics Lab, University of Freiburg
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are met:
@@ -26,43 +26,55 @@
 * POSSIBILITY OF SUCH DAMAGE.
 *
 * \author Billy Okal <okal@cs.uni-freiburg.de>
-* \author Sven Wehner <mail@svenwehner.de>
 */
 
-#ifndef _waypoint_h_
-#define _waypoint_h_
+#ifndef POINT_CLOUD_H
+#define POINT_CLOUD_H
 
-#include <pedsim/ped_waypoint.h>
-#include <pedsim_simulator/element/scenarioelement.h>
+#include <pedsim_sensors/pedsim_sensor.h>
 
-class Waypoint : public ScenarioElement, public Ped::Twaypoint {
-  Q_OBJECT
+#include <queue>
 
+#include <pedsim_msgs/LineObstacles.h>
+#include <pedsim_msgs/AgentStates.h>
+#include <ros/ros.h>
+#include <sensor_msgs/PointCloud.h>
+#include <sensor_msgs/PointCloud2.h>
+#include <sensor_msgs/point_cloud_conversion.h>
+
+namespace pedsim_ros {
+
+class PointCloud : public PedsimSensor {
  public:
-  explicit Waypoint(const QString& nameIn);
-  Waypoint(const QString& nameIn, const Ped::Tvector& positionIn);
+  PointCloud(const ros::NodeHandle& node_handle, const double rate, const int resol, 
+                     const FoVPtr& fov);
+  virtual ~PointCloud() = default;
 
-  virtual ~Waypoint();
+  void broadcast() override;
+  void run();
+  void obstaclesCallBack(const pedsim_msgs::LineObstaclesConstPtr& obstacles);
+  void agentStatesCallBack(const pedsim_msgs::AgentStatesConstPtr& agents);
 
-  // Signals
- signals:
-  void positionChanged(double x, double y);
+  // detected obss is a 360 deg scan map
+  uint rad_to_index(float rad);
+  float index_to_rad(uint index);
+  uint fit_index(int index);
+  void fillDetectedObss(std::vector<std::complex<float>>& detected_obss,
+                        std::complex<float> obs, float width);
 
-  // Methods
- public:
-  QString getName() const;
-  // → Ped::Twaypoint Overrides
-  virtual void setPosition(double xIn, double yIn);
-  virtual void setPosition(const Ped::Tvector& posIn);
-  virtual void setx(double xIn);
-  virtual void sety(double yIn);
-  //virtual double getx();
-  //virtual double gety();
-  virtual void setRadius(double rIn);
+ private:
+  ros::Subscriber sub_simulated_obstacles_;
+  ros::Subscriber sub_simulated_agents_;
 
-  // Attributes
+  std::queue<pedsim_msgs::LineObstaclesConstPtr> q_obstacles_;
+  std::queue<pedsim_msgs::AgentStatesConstPtr> q_agents_;
+
  protected:
-  const QString name;
+  int resol_;
+  float human_width = 0.2;
+  float obs_width = 0.5;
 };
+
+}  // namespace pedsim_ros
 
 #endif
