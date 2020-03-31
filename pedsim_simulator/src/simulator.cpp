@@ -216,7 +216,7 @@ void Simulator::updateRobotPositionFromTF() {
     // Get robot position via TF
     tf::StampedTransform tfTransform;
     try {
-      transform_listener_->lookupTransform("odom", "base_link",
+      transform_listener_->lookupTransform("odom", "none",
                                            ros::Time(0), tfTransform);
     } catch (tf::TransformException& e) {
       ROS_WARN_STREAM_THROTTLE(
@@ -225,10 +225,10 @@ void Simulator::updateRobotPositionFromTF() {
       return;
     }
 
-    const double x = tfTransform.getOrigin().x();
-    const double y = tfTransform.getOrigin().y();
-    const double dx = x - last_robot_pose_.getOrigin().x(),
-                 dy = y - last_robot_pose_.getOrigin().y();
+    const double x = 1000;//tfTransform.getOrigin().x();
+    const double y = 1000;//tfTransform.getOrigin().y();
+    const double dx = 0.0;//x - last_robot_pose_.getOrigin().x(),
+    const double dy = 0.0;//y - last_robot_pose_.getOrigin().y();
     const double dt =
         tfTransform.stamp_.toSec() - last_robot_pose_.stamp_.toSec();
     double vx = dx / dt, vy = dy / dt;
@@ -364,10 +364,10 @@ void Simulator::publishObstacles() {
   sim_obstacles.header = createMsgHeader();
   for (const auto& obstacle : SCENE.getObstacles()) {
     pedsim_msgs::LineObstacle line_obstacle;
-    //ROS_INFO_STREAM("obstacle->getax(): "<< obstacle->getax());
-    //ROS_INFO_STREAM("obstacle->getay(): "<< obstacle->getay());
-    //ROS_INFO_STREAM("obstacle->gebx(): "<< obstacle->getbx());
-    //ROS_INFO_STREAM("obstacle->getby(): "<< obstacle->getby());
+    ROS_INFO_STREAM("start x: "<< obstacle->getax());
+    ROS_INFO_STREAM("start y : "<< obstacle->getay());
+    ROS_INFO_STREAM("end x: "<< obstacle->getbx());
+    ROS_INFO_STREAM("end y: "<< obstacle->getby());
     line_obstacle.start.x = obstacle->getax();
     line_obstacle.start.y = obstacle->getay();
     line_obstacle.start.z = 0.0;

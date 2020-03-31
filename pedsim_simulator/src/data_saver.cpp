@@ -52,8 +52,8 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Point.h>
 #include <geometry_msgs/PoseStamped.h>
-#include <spencer_tracking_msgs/TrackedPerson.h>
-#include <spencer_tracking_msgs/TrackedPersons.h>
+#include <pedsim_msgs/TrackedPerson.h>
+#include <pedsim_msgs/TrackedPersons.h>
 #include <pedsim_simulator/transpose.h>
 
 /// -----------------------------------------------------------
@@ -108,7 +108,7 @@ public:
 
     // subscriber callbacks
 //    void callbackGridCells(const nav_msgs::GridCells::ConstPtr& msg);
-    void callbackTrackedPersons(const spencer_tracking_msgs::TrackedPersons::ConstPtr& msg);
+    void callbackTrackedPersons(const pedsim_msgs::TrackedPersons::ConstPtr& msg);
     void callbackRobotGoal(const geometry_msgs::Point::ConstPtr& msg);
 //    void callbackRobotOdom(const nav_msgs::Odometry::ConstPtr& msg);
 
@@ -207,11 +207,11 @@ bool PedsimData::inLocalZone(const std::array<double, 2>& point)
 /// \brief Receives tracked persons messages and store them into a dataset format
 /// The scheme of the CSV file is: Frame_id | Ped_id | Pos_y | Pos_x | Twist_x | Twist_y | Or_z | Or_w | Goal_x | Goal_y
 /// -----------------------------------------------------------
-void PedsimData::callbackTrackedPersons(const spencer_tracking_msgs::TrackedPersons::ConstPtr& msg)
+void PedsimData::callbackTrackedPersons(const pedsim_msgs::TrackedPersons::ConstPtr& msg)
 {
 
     for (unsigned int i = 0; i < msg->tracks.size(); i++) {
-        spencer_tracking_msgs::TrackedPerson p = msg->tracks[i];
+        pedsim_msgs::TrackedPerson p = msg->tracks[i];
 
         // hack to add goal info
         if (p.twist.twist.linear.x > 0){

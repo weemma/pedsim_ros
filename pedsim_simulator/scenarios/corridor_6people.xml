@@ -2,10 +2,10 @@
 <!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
 <scenario>
     <!--Exterior rectangle-->
-    <!--
-    <obstacle x1="0" y1="-3" x2="20" y2="-3"/>
-    <obstacle x1="0" y1="3" x2="20" y2="3"/>
--->
+    <!---->
+    <obstacle x1="0" y1="-2" x2="20" y2="-2"/>
+    <obstacle x1="0" y1="2" x2="20" y2="2"/>
+
     <!--Interior rectangle-->
     <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
 
