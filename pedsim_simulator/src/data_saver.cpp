@@ -70,13 +70,13 @@ public:
         sub_tracked_persons_ = nh_.subscribe("/pedsim_visualizer/tracked_persons", 1, &PedsimData::callbackTrackedPersons, this);
         //sub_robot_goal_ = nh_.subscribe("/pedsim/goal", 1, &PedsimData::callbackRobotGoal, this);
         //sub_robot_odom_ = nh_.subscribe("/pedsim/robot_position", 1, &PedsimData::callbackRobotOdom, this);
-
+        sub_robot_state = nh_.subscribe("/robot_state", 1, &PedsimData::callbackRobotState, this);
         // setup TF listener for obtaining robot position
         transform_listener_ = boost::make_shared<tf::TransformListener>();
 
 
         nh_.param<std::string>("/data_saver/robot_frame", robot_frame_, "base_link");
-//        robot_frame_ = "odom";
+        nh_.param<bool>("/data_saver/record_robot", record_robot_, false);
 
         // sampling rate
         nh_.param("/data_saver/rate", rate_, 10.0);
@@ -110,6 +110,7 @@ public:
 //    void callbackGridCells(const nav_msgs::GridCells::ConstPtr& msg);
     void callbackTrackedPersons(const pedsim_msgs::TrackedPersons::ConstPtr& msg);
     void callbackRobotGoal(const geometry_msgs::Point::ConstPtr& msg);
+    void callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg);
 //    void callbackRobotOdom(const nav_msgs::Odometry::ConstPtr& msg);
 
 private:
@@ -139,7 +140,7 @@ private:
     double size_;
     // flip param
     int flip_;
-
+    bool record_robot_;
     std::string robot_frame_;
 
 //    // publishers
@@ -152,6 +153,7 @@ private:
 //    ros::Subscriber sub_grid_cells_;
     ros::Subscriber sub_tracked_persons_;
     ros::Subscriber sub_robot_goal_;
+    ros::Subscriber sub_robot_state;
 //    ros::Subscriber sub_robot_odom_;
 
     // Transform listener coverting people poses to be relative to the robot
@@ -161,6 +163,16 @@ protected:
     // check if a point is in the local zone of the robot
     bool inLocalZone(const std::array<double, 2>& point);
 };
+
+// read current position and velocity of the robot
+void PedsimData::callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg)
+{
+    dataset_ << -1 << ',' << ros::Time::now().toSec() << ',' << ros::Time::now().toNSec() << ','
+             << msg->position.x << ',' << msg->position.y<< ','
+             << msg->position.z*cos(msg->orientation.z) << ',' << msg->position.y*cos(msg->orientation.y) << ','
+             << 0     << ',' << 0  << std::endl;
+    counter_ += 1;
+}
 
 /// -----------------------------------------------------------
 /// \function run
@@ -214,20 +226,10 @@ void PedsimData::callbackTrackedPersons(const pedsim_msgs::TrackedPersons::Const
     for (unsigned int i = 0; i < msg->tracks.size(); i++) {
         pedsim_msgs::TrackedPerson p = msg->tracks[i];
 
-        // hack to add goal info
-        if (p.twist.twist.linear.x > 0){
-            //ROS_INFO("callbackTrackedPersons");
-            dataset_ << p.track_id << ',' << msg->header.stamp.sec << ',' << msg->header.stamp.nsec << ','
-                     << p.pose.pose.position.x << ',' << p.pose.pose.position.y<< ','
-                     << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
-                     << 10.0     << ',' << 0.0  << std::endl;
-        }
-        else{
-            dataset_ << p.track_id << ',' << msg->header.stamp.sec << ',' << msg->header.stamp.nsec << ','
-                     << p.pose.pose.position.x << ',' << p.pose.pose.position.y<< ','
-                     << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
-                     << -10.0     << ',' << 0.0  << std::endl;
-        }
+        dataset_ << p.track_id << ',' << msg->header.stamp.sec << ',' << msg->header.stamp.nsec << ','
+                 << p.pose.pose.position.x << ',' << p.pose.pose.position.y<< ','
+                 << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
+                 << p.goal.position.x     << ',' << p.goal.position.y  << std::endl;
         counter_ += 1;
     }
 }

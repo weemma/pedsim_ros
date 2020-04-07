@@ -110,8 +110,15 @@ bool Simulator::initializeSimulation() {
   }
 
   nh_.param<bool>("enable_groups", CONFIG.groups_enabled, true);
+  nh_.param<bool>("interaction", CONFIG.interaction, true);
+
+  if(CONFIG.interaction)
+    ROS_WARN_STREAM("Interaction enabled!!! ");
+  else
+    ROS_ERROR_STREAM("No Interaction!!! ");
+
   nh_.param<double>("max_robot_speed", CONFIG.max_robot_speed, 1.5);
-  nh_.param<double>("update_rate", CONFIG.updateRate, 25.0);
+  nh_.param<double>("update_rate", CONFIG.updateRate, 20.0);
   nh_.param<double>("simulation_factor", CONFIG.simulationFactor, 1.0);
 
   int op_mode = 1;
@@ -218,23 +225,56 @@ void Simulator::updateRobotPositionFromTF() {
 
     // Get robot position via TF
     tf::StampedTransform tfTransform;
-    try {
-      transform_listener_->lookupTransform("odom", "none",
-                                           ros::Time(0), tfTransform);
-    } catch (tf::TransformException& e) {
-      ROS_WARN_STREAM_THROTTLE(
-          5.0,
-          "TF lookup from base_link to  odom failed. Reason: " << e.what());
-      return;
+    double x ;//tfTransform.getOrigin().x();
+    double y ;//tfTransform.getOrigin().y();
+    double dx;//x - last_robot_pose_.getOrigin().x(),
+    double dy;//y - last_robot_pose_.getOrigin().y();
+    double dt;
+    double vx;
+    double vy;
+
+    if(!CONFIG.interaction) {
+
+        try {
+            transform_listener_->lookupTransform("odom", "none",
+                                                 ros::Time(0), tfTransform);
+        } catch (tf::TransformException& e) {
+            ROS_WARN_STREAM_THROTTLE(
+                    5.0,
+                    "TF lookup from base_link to  odom failed. Reason: " << e.what());
+            return;
+        }
+
+        x = 1000;//tfTransform.getOrigin().x();
+        y = 1000;//tfTransform.getOrigin().y();
+        dx = 0.0;//x - last_robot_pose_.getOrigin().x(),
+        dy = 0.0;//y - last_robot_pose_.getOrigin().y();
+        dt =
+                tfTransform.stamp_.toSec() - last_robot_pose_.stamp_.toSec();
+        vx = 0.0;
+        vy = 0.0;
+    }
+    else{
+
+        try {
+            transform_listener_->lookupTransform("odom", "base_link",
+                                                 ros::Time(0), tfTransform);
+        } catch (tf::TransformException& e) {
+            ROS_WARN_STREAM_THROTTLE(
+                    5.0,
+                    "TF lookup from base_link to  odom failed. Reason: " << e.what());
+            return;
+        }
+
+        x = tfTransform.getOrigin().x();
+        y = tfTransform.getOrigin().y();
+        dx = x - last_robot_pose_.getOrigin().x(), dy = y - last_robot_pose_.getOrigin().y();
+        dt =
+                tfTransform.stamp_.toSec() - last_robot_pose_.stamp_.toSec();
+        vx = dx / dt;
+        vy = dy / dt;
     }
 
-    const double x = 1000;//tfTransform.getOrigin().x();
-    const double y = 1000;//tfTransform.getOrigin().y();
-    const double dx = 0.0;//x - last_robot_pose_.getOrigin().x(),
-    const double dy = 0.0;//y - last_robot_pose_.getOrigin().y();
-    const double dt =
-        tfTransform.stamp_.toSec() - last_robot_pose_.stamp_.toSec();
-    double vx = dx / dt, vy = dy / dt;
 
     if (!std::isfinite(vx)) vx = 0;
     if (!std::isfinite(vy)) vy = 0;
@@ -300,6 +340,9 @@ void Simulator::publishAgents() {
     state.twist.linear.x = a->getvx();
     state.twist.linear.y = a->getvy();
     state.twist.linear.z = a->getvz();
+
+    state.goal.position.x = a->getCurrentWaypoint()->getx();
+    state.goal.position.y = a->getCurrentWaypoint()->gety();
 
     AgentStateMachine::AgentState sc = a->getStateMachine()->getCurrentState();
     state.social_state = agentStateToActivity(sc);

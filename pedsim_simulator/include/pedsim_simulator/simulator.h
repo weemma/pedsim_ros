@@ -64,7 +64,7 @@
 #include <pedsim_simulator/element/waypoint.h>
 #include <pedsim_simulator/scenarioreader.h>
 #include <pedsim_simulator/scene.h>
-
+#include <pedsim_simulator/element/waypoint.h>
 #include <dynamic_reconfigure/server.h>
 #include <pedsim_simulator/PedsimSimulatorConfig.h>
 

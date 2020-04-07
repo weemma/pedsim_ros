@@ -3,6 +3,7 @@ uint64 id
 uint16 type
 string social_state
 geometry_msgs/Pose pose
+geometry_msgs/Pose goal
 geometry_msgs/Twist twist
 pedsim_msgs/AgentForce forces
 

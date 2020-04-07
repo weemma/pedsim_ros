@@ -30,7 +30,7 @@
 */
 
 #include <pedsim_simulator/element/waypoint.h>
-
+#include <random>
 Waypoint::Waypoint(const QString& nameIn) : name(nameIn) {}
 
 Waypoint::Waypoint(const QString& nameIn, const Ped::Tvector& positionIn)
@@ -44,8 +44,17 @@ QString Waypoint::getName() const { return name; }
 
 void Waypoint::setPosition(double xIn, double yIn) {
   // update position
+
+  // Define random generator with Gaussian distribution
+  const double mean = 0.0;
+  const double stddev = 1.0;
+  std::default_random_engine generator;
+  std::normal_distribution<double> dist(mean, stddev);
+
   Ped::Twaypoint::setx(xIn);
   Ped::Twaypoint::sety(yIn);
+
+  //ROS_INFO_STREAM("NEW GOAL: " << xIn+dist(generator) <<" " << yIn+dist(generator));
 
   // inform users
   emit positionChanged(getx(), gety());

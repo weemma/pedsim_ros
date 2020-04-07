@@ -31,6 +31,8 @@
 
 #ifndef _waypoint_h_
 #define _waypoint_h_
+#include <ros/console.h>
+#include <ros/ros.h>
 
 #include <pedsim/ped_waypoint.h>
 #include <pedsim_simulator/element/scenarioelement.h>

@@ -54,14 +54,14 @@ namespace pedsim {
       // int y = y1 - 0.5, x = x1 - 0.5;  // the line points
       double y;
       if(y1 < 0)
-        y = y1-0.5;
-      else
         y = y1+0.5;
+      else
+        y = y1-0.5;
       double x;  // the line points
       if(x1 < 0)
-        x = x1-0.5;
-      else
         x = x1+0.5;
+      else
+        x = x1-0.5;
       int ddy, ddx;        // compulsory variables: the double values of dy and dx
       int dx = x2 - x1;
       int dy = y2 - y1;

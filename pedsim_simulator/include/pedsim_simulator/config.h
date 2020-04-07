@@ -106,6 +106,7 @@ class Config : public QObject {
 
   // enable/disable groups behaviour
   bool groups_enabled;
+  bool interaction;
 
   // cells
   double cell_width;
