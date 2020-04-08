@@ -86,6 +86,8 @@ public:
         nh_.param("/data_saver/size", size_, 100.0);
         path_ = path_+ "total_log.csv";
 
+        ROS_INFO_STREAM("Saving data to: " << path_);
+
         // Open dataset
         dataset_.open(path_);
 
@@ -97,6 +99,7 @@ public:
 
         // Initialize counter
         counter_ = 0;
+
     }
     virtual ~PedsimData()
     {
@@ -105,6 +108,7 @@ public:
 
     // control
     void run();
+    void writeData(void);
 
     // subscriber callbacks
 //    void callbackGridCells(const nav_msgs::GridCells::ConstPtr& msg);
@@ -112,6 +116,11 @@ public:
     void callbackRobotGoal(const geometry_msgs::Point::ConstPtr& msg);
     void callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg);
 //    void callbackRobotOdom(const nav_msgs::Odometry::ConstPtr& msg);
+public:
+
+    // State variables
+    geometry_msgs::Pose robot_state_;
+    pedsim_msgs::TrackedPersons pedestrians_states_;
 
 private:
     ros::NodeHandle nh_;
@@ -167,11 +176,7 @@ protected:
 // read current position and velocity of the robot
 void PedsimData::callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg)
 {
-    dataset_ << -1 << ',' << ros::Time::now().toSec() << ',' << ros::Time::now().toNSec() << ','
-             << msg->position.x << ',' << msg->position.y<< ','
-             << msg->position.z*cos(msg->orientation.z) << ',' << msg->position.y*cos(msg->orientation.y) << ','
-             << 0     << ',' << 0  << std::endl;
-    counter_ += 1;
+    robot_state_ = *msg;
 }
 
 /// -----------------------------------------------------------
@@ -181,11 +186,13 @@ void PedsimData::callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg)
 void PedsimData::run()
 {
     ros::Rate r(rate_); // Hz
-    ROS_INFO_STREAM("Started recording");
+    ROS_INFO_STREAM("Started recording with rate: " << rate_);
+    ros::Duration(5.0).sleep();
     while (ros::ok() && counter_ < size_) {
+        writeData();
         ros::spinOnce();
         r.sleep();
-        if(counter_ % 1000 < 10)
+        if(counter_ % 1000 == 0)
             ROS_INFO_STREAM("Step: " << counter_);
     }
     ROS_INFO_STREAM("Done recording");
@@ -222,19 +229,28 @@ bool PedsimData::inLocalZone(const std::array<double, 2>& point)
 /// -----------------------------------------------------------
 void PedsimData::callbackTrackedPersons(const pedsim_msgs::TrackedPersons::ConstPtr& msg)
 {
-
-    for (unsigned int i = 0; i < msg->tracks.size(); i++) {
-        pedsim_msgs::TrackedPerson p = msg->tracks[i];
-
-        dataset_ << p.track_id << ',' << msg->header.stamp.sec << ',' << msg->header.stamp.nsec << ','
-                 << p.pose.pose.position.x << ',' << p.pose.pose.position.y<< ','
-                 << p.twist.twist.linear.x << ',' << p.twist.twist.linear.y << ','
-                 << p.goal.position.x     << ',' << p.goal.position.y  << std::endl;
-        counter_ += 1;
-    }
+    pedestrians_states_ = *msg;
 }
 
+void PedsimData::writeData(void)
+{
+    ros::Time  now = ros::Time::now();
+    // Write Pedestrian Info
+    for (unsigned int i = 0; i < pedestrians_states_.tracks.size(); i++) {
 
+        dataset_ << pedestrians_states_.tracks[i].track_id << ',' << now.toSec() << ',' << now.toNSec() << ','
+                 << pedestrians_states_.tracks[i].pose.pose.position.x << ',' << pedestrians_states_.tracks[i].pose.pose.position.y<< ','
+                 << pedestrians_states_.tracks[i].twist.twist.linear.x << ',' << pedestrians_states_.tracks[i].twist.twist.linear.y << ','
+                 << pedestrians_states_.tracks[i].goal.position.x     << ',' << pedestrians_states_.tracks[i].goal.position.y  << std::endl;
+    }
+    // Write Robot Info
+    dataset_ << -1 << ',' << now.toSec() << ',' << now.toNSec() << ','
+             << robot_state_.position.x << ',' << robot_state_.position.y<< ','
+             << robot_state_.position.z*cos(robot_state_.orientation.z) << ',' << robot_state_.position.y*cos(robot_state_.orientation.y) << ','
+             << 0     << ',' << 0  << std::endl;
+
+    counter_ += 1;
+}
 /// -----------------------------------------------------------
 /// \function callbackRobotOdom
 /// \brief Receives robot position and cache it for use later
