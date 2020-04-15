@@ -235,16 +235,19 @@ void PedsimData::callbackTrackedPersons(const pedsim_msgs::TrackedPersons::Const
 void PedsimData::writeData(void)
 {
     ros::Time  now = ros::Time::now();
+    int sec = int(now.toSec());
+    int nsec = int((now.toSec()-sec)*1e9);
+
     // Write Pedestrian Info
     for (unsigned int i = 0; i < pedestrians_states_.tracks.size(); i++) {
 
-        dataset_ << pedestrians_states_.tracks[i].track_id << ',' << now.toSec() << ',' << now.toNSec() << ','
+        dataset_ << pedestrians_states_.tracks[i].track_id << ',' << sec << ',' << nsec << ','
                  << pedestrians_states_.tracks[i].pose.pose.position.x << ',' << pedestrians_states_.tracks[i].pose.pose.position.y<< ','
                  << pedestrians_states_.tracks[i].twist.twist.linear.x << ',' << pedestrians_states_.tracks[i].twist.twist.linear.y << ','
                  << pedestrians_states_.tracks[i].goal.position.x     << ',' << pedestrians_states_.tracks[i].goal.position.y  << std::endl;
     }
     // Write Robot Info
-    dataset_ << -1 << ',' << now.toSec() << ',' << now.toNSec() << ','
+    dataset_ << -1 << ',' << sec << ',' << nsec << ','
              << robot_state_.position.x << ',' << robot_state_.position.y<< ','
              << robot_state_.position.z*cos(robot_state_.orientation.z) << ',' << robot_state_.position.y*cos(robot_state_.orientation.y) << ','
              << 0     << ',' << 0  << std::endl;
