@@ -16,6 +16,7 @@ set(PEDSIM_SIMULATOR_DEPENDENCIES
   tf
   cmake_modules
   dynamic_reconfigure
+  spencer_tracking_msgs
 )
 
 ## Find catkin macros and libraries
