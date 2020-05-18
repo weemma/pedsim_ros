@@ -19,15 +19,15 @@
     <waypoint id="robot_start" x="20" y="0" r="0"/>
 
     <!-- -->
-    <agent x="-1" y="0" n="1" dx="1" dy="1" type="2">
-        <addwaypoint id="robot_goal"/>
-    </agent>
-
     <!-- AgentType { ADULT = 0, CHILD = 1, ROBOT = 2, ELDER = 3 } -->
     <!--AgentClusters-->
     <agent x="1" y="0" n="1" dx="3" dy="3" type="0">
         <addwaypoint id="goal_2"/>
         <addwaypoint id="goal_1"/>
+    </agent>
+
+    <agent x="-1" y="0" n="1" dx="1" dy="1" type="2">
+        <addwaypoint id="robot_goal"/>
     </agent>
 
 </scenario>

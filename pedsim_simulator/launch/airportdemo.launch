@@ -3,6 +3,7 @@
   <arg name="rqt_teleop" default="false"/>
   <arg name="visualize" default="true"/>
   <arg name="with_robot" default="true"/>
+  <arg name="record_data" default="true"/>
 
   <arg name="simulation_factor" default="1.0"/> <!-- Speed up -->
   <arg name="update_rate" default="25.0"/> <!-- Hz -->
@@ -23,6 +24,21 @@
     <arg name="pose_initial_y" value="5.0"/>
     <arg name="pose_initial_theta" value="0.7"/>
   </include>
+
+  <group if="$(arg record_data)">
+      <!-- Dataset saver -->
+      <node name="data_saver" pkg="pedsim_simulator" type="dataset_saver" output="screen">
+            <param name="local_width" value="10.0" type="double"/>
+            <param name="local_height" value="10.0" type="double"/>
+            <param name="global_width" value="50.0" type="double"/>
+            <param name="global_height" value="50.0" type="double"/>
+            <param name="rate" value="2.5" type="double"/>
+            <param name="path" value="/home/fran/ros/src/pedsim_ros/pedsim_simulator/src/pedsim_training"/>
+    				<!--param name="size" value="15000" type="int"-->
+    				<param name="size" value="20000" type="int"/>
+    				<param name="flip" value="1" type="int"/>
+      </node>
+  </group>
 
   <!-- Visualizer -->
   <include file="$(find pedsim_visualizer)/launch/visualizer.launch"/>

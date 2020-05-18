@@ -152,6 +152,9 @@ private:
     bool record_robot_;
     std::string robot_frame_;
 
+    float sec_ = 0.0;
+    int nsec_ = 0;
+
 //    // publishers
 //    ros::Publisher pub_point_Data_global_;
 //    ros::Publisher pub_point_Data_local_;
@@ -234,25 +237,28 @@ void PedsimData::callbackTrackedPersons(const pedsim_msgs::TrackedPersons::Const
 
 void PedsimData::writeData(void)
 {
-    ros::Time  now = ros::Time::now();
-    int sec = int(now.toSec());
-    int nsec = int((now.toSec()-sec)*1e9);
+    //ros::Time  now = ros::Time::now();
+    //int sec = int(now.toSec());
+    //int nsec = int((now.toSec()-sec)*1e9);
 
     // Write Pedestrian Info
     for (unsigned int i = 0; i < pedestrians_states_.tracks.size(); i++) {
 
-        dataset_ << pedestrians_states_.tracks[i].track_id << ',' << sec << ',' << nsec << ','
+        dataset_ << pedestrians_states_.tracks[i].track_id << ',' << sec_ << ',' << nsec_ << ','
                  << pedestrians_states_.tracks[i].pose.pose.position.x << ',' << pedestrians_states_.tracks[i].pose.pose.position.y<< ','
                  << pedestrians_states_.tracks[i].twist.twist.linear.x << ',' << pedestrians_states_.tracks[i].twist.twist.linear.y << ','
                  << pedestrians_states_.tracks[i].goal.position.x     << ',' << pedestrians_states_.tracks[i].goal.position.y  << std::endl;
     }
     // Write Robot Info
-    dataset_ << -1 << ',' << sec << ',' << nsec << ','
+    dataset_ << -1 << ',' << sec_ << ',' << nsec_ << ','
              << robot_state_.position.x << ',' << robot_state_.position.y<< ','
              << robot_state_.position.z*cos(robot_state_.orientation.z) << ',' << robot_state_.position.y*cos(robot_state_.orientation.y) << ','
              << 0     << ',' << 0  << std::endl;
 
     counter_ += 1;
+    sec_ += 0.10;
+    float value = (int)(sec_ * 100 + .5);
+    sec_ = (float)value / 100;
 }
 /// -----------------------------------------------------------
 /// \function callbackRobotOdom

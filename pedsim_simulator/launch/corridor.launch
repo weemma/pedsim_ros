@@ -2,6 +2,7 @@
   <arg name="kbd_teleop" default="false"/>
   <arg name="rqt_teleop" default="true"/>
   <arg name="visualize" default="true"/>
+  <arg name="scenario" default="corridor_6people"/>
 
   <!-- Dataset saver -->
 
