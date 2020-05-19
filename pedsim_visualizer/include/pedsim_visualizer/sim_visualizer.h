@@ -51,10 +51,11 @@
 #include <pedsim_msgs/SocialActivity.h>
 #include <pedsim_msgs/SocialRelation.h>
 #include <pedsim_msgs/SocialRelations.h>
-#include <pedsim_msgs/TrackedGroup.h>
-#include <pedsim_msgs/TrackedGroups.h>
-#include <pedsim_msgs/TrackedPerson.h>
-#include <pedsim_msgs/TrackedPersons.h>
+#include <spencer_tracking_msgs/TrackedGroup.h>
+#include <spencer_tracking_msgs/TrackedGroups.h>
+#include <spencer_tracking_msgs/TrackedPerson.h>
+//#include <pedsim_msgs/TrackedPersons.h>
+#include <spencer_tracking_msgs/TrackedPersons.h>
 
 #include <geometry_msgs/Point.h>
 #include <geometry_msgs/PoseStamped.h>

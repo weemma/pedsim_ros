@@ -10,6 +10,7 @@ set(PACKAGE_DEPS
   rospy
   std_msgs
   visualization_msgs
+  spencer_tracking_msgs
   dynamic_reconfigure
 )
 find_package(catkin REQUIRED COMPONENTS ${PACKAGE_DEPS})
