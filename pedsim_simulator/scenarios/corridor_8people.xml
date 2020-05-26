@@ -10,13 +10,13 @@
     <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
 
     <!--Waypoints (incl. WaitingQueues)-->
-    <waypoint id="goal_1" x="-0" y="1" r="2"/>
-    <waypoint id="goal_2" x="21" y="1" r="2"/>
-    <waypoint id="goal_3" x="-0" y="-1.0" r="2"/>
-    <waypoint id="goal_4" x="21" y="-1.0" r="2"/>
-    <waypoint id="goal_5" x="-5" y="0.0" r="2"/>
-    <waypoint id="robot_goal" x="21.0" y="0" r="2"/>
-    <waypoint id="robot_start" x="21" y="0" r="0"/>
+    <waypoint id="goal_1" x="5" y="1" r="2"/>
+    <waypoint id="goal_2" x="24" y="1" r="2"/>
+    <waypoint id="goal_3" x="5" y="-1.0" r="2"/>
+    <waypoint id="goal_4" x="24" y="-1.0" r="2"/>
+    <waypoint id="goal_5" x="1" y="0.0" r="2"/>
+    <waypoint id="robot_goal" x="26.0" y="0" r="2"/>
+    <waypoint id="robot_start" x="0" y="0" r="0"/>
 
     <!-- -->
 
