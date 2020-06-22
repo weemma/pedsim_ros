@@ -174,6 +174,12 @@ void SimVisualizer::publishObstacleVisuals() {
       p.x = cell.first;
       p.y = cell.second;
       p.z = 0.0;
+      if (p.x > 0.0) {
+        p.x += 0.5;
+      }
+      if (p.y > 0.0) {
+        p.y += 0.5;
+      }
       //ROS_INFO_STREAM("New obstacle, x: " << p.x << " y: "<< p.y);
       walls_marker.points.push_back(p);
     }

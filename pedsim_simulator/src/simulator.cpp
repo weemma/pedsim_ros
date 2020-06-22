@@ -128,7 +128,7 @@ bool Simulator::initializeSimulation() {
   paused_ = false;
 
   spawn_timer_ =
-      nh_.createTimer(ros::Duration(5.0), &Simulator::spawnCallback, this);
+      nh_.createTimer(ros::Duration(10.0), &Simulator::spawnCallback, this);
 
   return true;
 }
