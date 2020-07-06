@@ -35,9 +35,9 @@ Ped::Tagent::Tagent() {
   vmax = distribution(generator);
 
   forceFactorDesired = 1.0;
-  forceFactorSocial = 2.1;
+  forceFactorSocial = 4.1;
   forceFactorObstacle = 10.0;
-  forceSigmaObstacle = 0.8;
+  forceSigmaObstacle = 0.05;
 
   agentRadius = 0.35;
   relaxationTime = 0.5;
@@ -125,7 +125,7 @@ Ped::Tvector Ped::Tagent::desiredForce() {
 Ped::Tvector Ped::Tagent::socialForce() const {
   // define relative importance of position vs velocity vector
   // (set according to Moussaid-Helbing 2009)
-  const double lambdaImportance = 2.0;
+  const double lambdaImportance = 1.0;
 
   // define speed interaction
   // (set according to Moussaid-Helbing 2009)
@@ -207,7 +207,9 @@ Ped::Tvector Ped::Tagent::obstacleForce() const {
 
   double distance = sqrt(minDistanceSquared) - agentRadius;
   double forceAmount = exp(-distance / forceSigmaObstacle);
-  return forceAmount * minDiff.normalized();
+  // New way of computing obstacle for direction
+  auto desiredDiff = minDiff.normalized() + desiredDirection;
+  return forceAmount * desiredDiff.normalized();
 }
 
 /// myForce() is a method that returns an "empty" force (all components set to
@@ -224,7 +226,7 @@ Ped::Tvector Ped::Tagent::myForce(Ped::Tvector e) const {
 void Ped::Tagent::computeForces() {
   // update neighbors
   // NOTE - have a config value for the neighbor range
-  const double neighborhoodRange = 10.0;
+  const double neighborhoodRange = 5.0;
   neighbors = scene->getNeighbors(p.x, p.y, neighborhoodRange);
 
   // update forces
