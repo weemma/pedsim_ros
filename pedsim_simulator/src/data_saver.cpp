@@ -114,7 +114,7 @@ public:
 //    void callbackGridCells(const nav_msgs::GridCells::ConstPtr& msg);
     void callbackTrackedPersons(const pedsim_msgs::TrackedPersons::ConstPtr& msg);
     void callbackRobotGoal(const geometry_msgs::Point::ConstPtr& msg);
-    void callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg);
+    void callbackRobotState(const geometry_msgs::PoseStamped::ConstPtr& msg);
 //    void callbackRobotOdom(const nav_msgs::Odometry::ConstPtr& msg);
 public:
 
@@ -177,9 +177,9 @@ protected:
 };
 
 // read current position and velocity of the robot
-void PedsimData::callbackRobotState(const geometry_msgs::Pose::ConstPtr& msg)
+void PedsimData::callbackRobotState(const geometry_msgs::PoseStamped::ConstPtr& msg)
 {
-    robot_state_ = *msg;
+    robot_state_ = msg->pose;
 }
 
 /// -----------------------------------------------------------

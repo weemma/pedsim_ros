@@ -37,7 +37,7 @@ Ped::Tagent::Tagent() {
   forceFactorDesired = 1.0;
   forceFactorSocial = 4.1;
   forceFactorObstacle = 10.0;
-  forceSigmaObstacle = 0.05;
+  forceSigmaObstacle = 1.0;
 
   agentRadius = 0.35;
   relaxationTime = 0.5;
