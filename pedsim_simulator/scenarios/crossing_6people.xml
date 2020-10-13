@@ -19,32 +19,32 @@
     <waypoint id="goal_6r" x="9" y="7" r="2"/>
 
     <!-- Agent 1 -->
-    <agent x="4" y="-7" n="1" dx="0.2" dy="2" type="0">
+    <agent x="4" y="-7" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_1l"/>
         <addwaypoint id="goal_1r"/>
     </agent>
 <!-- Agent 1 -->
-    <agent x="5" y="7" n="1" dx="0.2" dy="2" type="0">
+    <agent x="5" y="7" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_2r"/>
         <addwaypoint id="goal_2l"/>
     </agent>
 
-    <agent x="6.5" y="7" n="1" dx="0.2" dy="2" type="0">
+    <agent x="6.5" y="7" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_3l"/>
         <addwaypoint id="goal_3r"/>
     </agent>
 
-    <agent x="7" y="-7" n="1" dx="0.2" dy="2" type="0">
+    <agent x="7" y="-7" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_4l"/>
         <addwaypoint id="goal_4r"/>
     </agent>
 
-    <agent x="8.5" y="-7" n="1" dx="0.2" dy="2" type="0">
+    <agent x="8.5" y="-7" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_5r"/>
         <addwaypoint id="goal_5l"/>
     </agent>
 
-    <agent x="9" y="7" n="1" dx="0.2" dy="2" type="0">
+    <agent x="9" y="7" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_6l"/>
         <addwaypoint id="goal_6r"/>
     </agent>

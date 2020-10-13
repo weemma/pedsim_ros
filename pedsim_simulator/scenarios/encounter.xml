@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
+<scenario>
+    <!--Exterior rectangle-->
+    <!---->
+    <obstacle x1="-5" y1="-3" x2="25" y2="-3"/>
+    <obstacle x1="-5" y1="3" x2="25" y2="3"/>
+
+    <!--Interior rectangle-->
+    <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
+
+    <!--Waypoints (incl. WaitingQueues)-->
+    <waypoint id="goal_1" x="0" y="0" r="0.05"/>
+    <waypoint id="goal_2" x="15" y="0" r="0.05"/>
+
+    <!-- AgentType { ADULT = 0, CHILD = 1, ROBOT = 2, ELDER = 3 } -->
+    <!--AgentClusters-->
+<!--     <agent x="13" y="0" n="1" dx="0" dy="0" type="0">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+    </agent> -->
+
+    <agent x="13" y="0" n="1" dx="0" dy="0" type="0">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+    </agent>
+
+        <agent x="100" y="0" n="1" dx="0" dy="0" type="0">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+    </agent>
+</scenario>

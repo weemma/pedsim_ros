@@ -12,13 +12,13 @@
 
 
     <!-- Agent 1 -->
-    <agent x="4" y="-6" n="1" dx="0.0" dy="2" type="0">
+    <agent x="4" y="-6" n="1" dx="0.0" dy="0" type="0">
         <addwaypoint id="goal_1l"/>
         <addwaypoint id="goal_1r"/>
     </agent>
 
 
-    <agent x="7" y="10" n="1" dx="0.0" dy="2" type="0">
+    <agent x="7" y="10" n="1" dx="0.0" dy="0" type="0">
         <addwaypoint id="goal_4r"/>
         <addwaypoint id="goal_4l"/>
     </agent>
