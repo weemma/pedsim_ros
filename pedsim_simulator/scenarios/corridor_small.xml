@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scenario>
+  <obstacle x1="1" y1="2" x2="30" y2="2"/>
+  <obstacle x1="1" y1="12" x2="30" y2="12"/>
+
+  <!--Waypoints-->
+  <waypoint id="north" x="15" y="10" r="2" b="1"/>
+  <waypoint id="south" x="15" y="4" r="2" b="1"/>
+
+  <!-- Sinks-->
+  <waypoint id="east_sink" x="7" y="7" r="2" b="2"/>
+  <waypoint id="west_sink" x="23" y="7" r="2" b="2"/>
+
+  <!--AgentClusters-->
+  <source x="6" y="7" n="1" dx="0" dy="0" type="0">
+    <addwaypoint id="west_sink"/>
+  </source>
+
+  <source x="24" y="7" n="1" dx="0" dy="0" type="0">
+    <addwaypoint id="east_sink"/>
+  </source>
+
+</scenario>

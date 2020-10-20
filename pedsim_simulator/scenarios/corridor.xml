@@ -1,52 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
 <scenario>
-    <!--Exterior rectangle-->
-    <obstacle x1="-15" y1="-3" x2="15" y2="-3"/>
-    <obstacle x1="-15" y1="3" x2="15" y2="3"/>
+  <obstacle x1="1" y1="2" x2="30" y2="2"/>
+  <obstacle x1="1" y1="12" x2="30" y2="12"/>
 
-    <!--Interior rectangle-->
-    <!--obstacle x1="-0.9" y1="-0.9" x2="0.9" y2="0.9"/-->
+  <!--Waypoints-->
+  <waypoint id="north" x="15" y="10" r="2" b="1"/>
+  <waypoint id="south" x="15" y="4" r="2" b="1"/>
 
-    <!--Waypoints (incl. WaitingQueues)-->
-    <waypoint id="goal_1" x="-9" y="0" r="1"/>
-    <waypoint id="goal_2" x="9" y="0" r="1"/>
-    <waypoint id="goal_3" x="-9" y="-1" r="1"/>
-    <waypoint id="goal_4" x="9" y="1" r="1"/>
-    <waypoint id="goal_5" x="-2" y="0" r="0.1"/>
-    <waypoint id="goal_6" x="2" y="0.5" r="0.1"/>
+  <!-- Sinks-->
+  <waypoint id="east_sink" x="7" y="7" r="2" b="2"/>
+  <waypoint id="west_sink" x="23" y="7" r="2" b="2"/>
 
-    <waypoint id="robot_goal" x="-7.5" y="0" r="2"/>
-    <waypoint id="robot_start" x="0" y="0" r="0"/>
-	
-<!--
-    <agent x="20" y="2" n="1" dx="10" dy="10" type="2">
-        <addwaypoint id="robot_start"/>
-        <addwaypoint id="robot_goal"/>
-    </agent>
--->
-    <!--AgentClusters-->
-    <!---->
+  <!--AgentClusters-->
+  <source x="6" y="7" n="1" dx="0" dy="0" type="0">
+    <addwaypoint id="west_sink"/>
+  </source>
 
-    <agent x="-10" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_2"/>
-        <addwaypoint id="goal_1"/>
-    </agent>
+  <source x="24" y="7" n="1" dx="0" dy="0" type="0">
+    <addwaypoint id="east_sink"/>
+  </source>
 
-    <agent x="-2" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_2"/>
-        <addwaypoint id="goal_1"/>
-    </agent>
-
-    <agent x="2" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_1"/>
-        <addwaypoint id="goal_2"/>
-    </agent>
-    <agent x="10" y="0" n="1" dx="3" dy="3" type="0">
-        <addwaypoint id="goal_1"/>
-        <addwaypoint id="goal_2"/>
-    </agent>
-<!---->
-
-
-    </scenario>
+</scenario>

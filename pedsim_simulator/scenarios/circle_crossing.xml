@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
+<scenario>
+    <!--Waypoints (incl. WaitingQueues)-->
+    <!-- Circle at center 10 (angels : 0.2, 0.4, 0.9, -0.3, -0.6, -0.7 -->
+
+    <!-- AgentType { ADULT = 0, CHILD = 1, ROBOT = 2, ELDER = 3 } -->
+    <!--AgentClusters-->
+    <waypoint id="goal_1" x="5.955" y="7.06" r="2"/>
+    <waypoint id="goal_12" x="14.0455" y="12.940" r="2"/>
+    <agent x="14.0455" y="12.940" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_12"/>
+    </agent>
+
+    <waypoint id="goal_2" x="8.45" y="5.245" r="2"/>
+    <waypoint id="goal_22" x="11.55" y="14.75" r="2"/>
+    <agent x="11.55" y="14.75" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_2"/>
+        <addwaypoint id="goal_22"/>
+    </agent>
+
+    <waypoint id="goal_3" x="14.75" y="8.45" r="2"/>
+    <waypoint id="goal_32" x="5.245" y="11.55" r="2"/>
+    <agent x="5.245" y="11.55" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_3"/>
+        <addwaypoint id="goal_32"/>
+    </agent>
+
+    <waypoint id="goal_4" x="7.06" y="14.056" r="2"/>
+    <waypoint id="goal_42" x="12.93" y="5.95" r="2"/>
+    <agent x="12.93" y="5.95" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_4"/>
+        <addwaypoint id="goal_42"/>
+    </agent>
+
+    <waypoint id="goal_5" x="11.55" y="14.75" r="2"/>
+    <waypoint id="goal_52" x="8.45" y="5.245"  r="2"/>
+    <agent x="8.45" y="5.245" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_5"/>
+        <addwaypoint id="goal_52"/>
+    </agent>
+
+    <waypoint id="goal_6" x="12.94" y="14.05" r="2"/>
+    <waypoint id="goal_62" x="7.06" y="5.96"  r="2"/>
+    <agent x="7.06" y="5.96" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_6"/>
+        <addwaypoint id="goal_62"/>
+    </agent>
+</scenario>

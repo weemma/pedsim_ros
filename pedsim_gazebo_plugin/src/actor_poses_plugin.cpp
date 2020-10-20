@@ -5,8 +5,8 @@ Created on Mon Dec  2
 */
 
 #include <gazebo/common/Plugin.hh>
-#include <gazebo-9/gazebo/physics/physics.hh>
-#include <gazebo-9/gazebo/util/system.hh>
+#include <gazebo-11/gazebo/physics/physics.hh>
+#include <gazebo-11/gazebo/util/system.hh>
 
 #include <ros/ros.h>
 #include "ros/callback_queue.h"

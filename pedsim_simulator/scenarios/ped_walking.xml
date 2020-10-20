@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This scenario file was created by SGDiCoP on 2014-04-16T15:14:48-->
+<scenario>
+    <!--Exterior rectangle-->
+    <!-- -->
+
+    <!--Interior rectangle-->
+    <!--obstacle x1="8" y1="3" x2="12" y2="4"/-->
+
+    <!--Waypoints (incl. WaitingQueues)-->
+
+
+    <!-- **************** -->
+    <!-- crossing road    -->
+    <!-- **************** -->
+    <waypoint id="goal_1" x="15" y="-0.5" r="2"/>
+    <waypoint id="goal_2" x="36" y="0.5" r="2"/>
+
+    <agent x="15" y="-0.5" n="1" dx="3" dy="3" type="2">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+    </agent>
+
+    <!--AgentClusters-->
+    <agent x="15" y="-0.5" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+    </agent>
+
+    <!-- **************** -->
+    <!-- walking in cross -->
+    <!-- **************** -->
+<!--
+    <waypoint id="goal_1" x="15" y="-3" r="2"/>
+    <waypoint id="goal_2" x="25" y="3" r="2"/>
+    <waypoint id="goal_3" x="15" y="3" r="2"/>
+    <waypoint id="goal_4" x="25" y="-3" r="2"/>
+
+    <agent x="15" y="-5" n="1" dx="3" dy="3" type="2">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+        <addwaypoint id="goal_3"/>
+        <addwaypoint id="goal_4"/>
+    </agent>
+-->
+
+    <!--AgentClusters-->
+<!--
+    <agent x="15" y="-5" n="1" dx="3" dy="3" type="0">
+        <addwaypoint id="goal_1"/>
+        <addwaypoint id="goal_2"/>
+        <addwaypoint id="goal_3"/>
+        <addwaypoint id="goal_4"/>
+    </agent>
+-->
+</scenario>
