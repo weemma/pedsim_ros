@@ -13,8 +13,8 @@
     <waypoint id="goal_3r" x="6.5" y="7" r="2"/>
     <waypoint id="goal_4l" x="7" y="-7" r="2"/>
     <waypoint id="goal_4r" x="7" y="7" r="2"/>
-    <waypoint id="goal_5l" x="8.5" y="-7" r="2"/>
-    <waypoint id="goal_5r" x="8.5" y="7" r="2"/>
+    <waypoint id="goal_5l" x="8" y="-7" r="2"/>
+    <waypoint id="goal_5r" x="8" y="7" r="2"/>
     <waypoint id="goal_6l" x="9" y="-7" r="2"/>
     <waypoint id="goal_6r" x="9" y="7" r="2"/>
 
@@ -34,17 +34,17 @@
         <addwaypoint id="goal_3r"/>
     </agent>
 
-    <agent x="7" y="-7" n="1" dx="0" dy="0" type="0">
+    <agent x="7" y="-10" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_4l"/>
         <addwaypoint id="goal_4r"/>
     </agent>
 
-    <agent x="8.5" y="-7" n="1" dx="0" dy="0" type="0">
+    <agent x="8" y="-11" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_5r"/>
         <addwaypoint id="goal_5l"/>
     </agent>
 
-    <agent x="9" y="7" n="1" dx="0" dy="0" type="0">
+    <agent x="9" y="13" n="1" dx="0" dy="0" type="0">
         <addwaypoint id="goal_6l"/>
         <addwaypoint id="goal_6r"/>
     </agent>
