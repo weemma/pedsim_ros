@@ -23,14 +23,14 @@ add_message_files( DIRECTORY msg
   AgentForce.msg
   LineObstacle.msg
   LineObstacles.msg
-  TrackedPerson.msg
-  TrackedPersons.msg
-  TrackedGroup.msg
-  TrackedGroups.msg
-  SocialRelation.msg
-  SocialRelations.msg
-  SocialActivity.msg
-  SocialActivities.msg
+  #  TrackedPerson.msg
+  #  TrackedPersons.msg
+  #  TrackedGroup.msg
+  #  TrackedGroups.msg
+  #  SocialRelation.msg
+  #  SocialRelations.msg
+  #  SocialActivity.msg
+  #  SocialActivities.msg
 )
 
 # generate the messages

@@ -11,7 +11,6 @@
 #include <algorithm>
 #include <cmath>
 #include <random>
-#include <iostream>
 
 using namespace std;
 
@@ -36,8 +35,8 @@ Ped::Tagent::Tagent() {
   vmax = distribution(generator);
 
   forceFactorDesired = 1.0;
-  forceFactorSocial = 2.1;
-  forceFactorObstacle = 5.0;
+  forceFactorSocial = 4.1;
+  forceFactorObstacle = 10.0;
   forceSigmaObstacle = 1.0;
 
   agentRadius = 0.35;
@@ -126,7 +125,7 @@ Ped::Tvector Ped::Tagent::desiredForce() {
 Ped::Tvector Ped::Tagent::socialForce() const {
   // define relative importance of position vs velocity vector
   // (set according to Moussaid-Helbing 2009)
-  const double lambdaImportance = 2.0;
+  const double lambdaImportance = 1.0;
 
   // define speed interaction
   // (set according to Moussaid-Helbing 2009)
@@ -206,11 +205,10 @@ Ped::Tvector Ped::Tagent::obstacleForce() const {
     }
   }
 
-  // New way of computing obstacle for direction
-  auto desiredDiff = minDiff.normalized() + desiredDirection;
-
   double distance = sqrt(minDistanceSquared) - agentRadius;
   double forceAmount = exp(-distance / forceSigmaObstacle);
+  // New way of computing obstacle for direction
+  auto desiredDiff = minDiff.normalized() + desiredDirection;
   return forceAmount * desiredDiff.normalized();
 }
 
@@ -228,7 +226,7 @@ Ped::Tvector Ped::Tagent::myForce(Ped::Tvector e) const {
 void Ped::Tagent::computeForces() {
   // update neighbors
   // NOTE - have a config value for the neighbor range
-  const double neighborhoodRange = 10.0;
+  const double neighborhoodRange = 5.0;
   neighbors = scene->getNeighbors(p.x, p.y, neighborhoodRange);
 
   // update forces
