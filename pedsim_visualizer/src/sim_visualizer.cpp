@@ -84,13 +84,13 @@ void SimVisualizer::publishAgentVisuals() {
 
   const auto current_states = q_people_.front();
 
-  pedsim_msgs::TrackedPersons tracked_people;
+  spencer_tracking_msgs::TrackedPersons tracked_people;
   tracked_people.header = current_states->header;
 
   for (const auto& agent_state : current_states->agent_states) {
     if (agent_state.type == 2) continue;
 
-    pedsim_msgs::TrackedPerson person;
+    spencer_tracking_msgs::TrackedPerson person;
     person.track_id = agent_state.id;
     person.is_occluded = false;
     person.detection_id = agent_state.id;
@@ -183,7 +183,7 @@ void SimVisualizer::setupPublishersAndSubscribers() {
   pub_obstacles_visuals_ =
       nh_.advertise<visualization_msgs::Marker>("walls", 1, true);
   pub_person_visuals_ =
-      nh_.advertise<pedsim_msgs::TrackedPersons>("tracked_persons", 1);
+      nh_.advertise<spencer_tracking_msgs::TrackedPersons>("tracked_persons", 1);
   pub_group_visuals_ =
       nh_.advertise<pedsim_msgs::TrackedGroups>("tracked_groups", 1);
 

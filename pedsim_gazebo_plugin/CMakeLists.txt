@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   gazebo_msgs
   pedsim_msgs
+  spencer_tracking_msgs
 )
 
 ## System dependencies are found with CMake's conventions

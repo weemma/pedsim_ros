@@ -3,7 +3,7 @@
   <arg name="rqt_teleop" default="true"/>
   <arg name="visualize" default="true"/>
   <arg name="with_robot" default="true"/>
-  <arg name="scenario" default="square"/>
+  <arg name="scenario" default="corridor_6people"/>
 
   <!-- Simulator -->
   <include file="$(find pedsim_simulator)/launch/simulator.launch">
@@ -19,9 +19,11 @@
     <arg name="pose_initial_theta" value="0.7"/>
   </include>
 
-  <!-- Map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find pedsim_simulator)scenarios/maps/$(arg scenario).yaml">
-    <param name="frame_id" value="odom" />
+  <!-- Local Costs Map -->
+  <node name="costmap_jackal" pkg="costmap_2d" type="costmap_2d_node" output="screen" clear_params="true">
+      <rosparam file="$(find lmpcc)/config/costmap_static_params.yaml" command="load" ns="costmap" />
+      <param name='costmap/global_frame' value='map' />
+      <param name='costmap/robot_base_frame' value='base_link' />
   </node>
 
   <!-- Visualizer -->
