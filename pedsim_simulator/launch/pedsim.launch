@@ -1,6 +1,6 @@
 <launch>
   <arg name="kbd_teleop" default="false"/>
-  <arg name="rqt_teleop" default="true"/>
+  <arg name="rqt_teleop" default="false"/>
   <arg name="visualize" default="true"/>
   <arg name="with_robot" default="true"/>
   <arg name="scenario" default="corridor_6people"/>
@@ -13,7 +13,7 @@
     <arg name="scene_file" value="$(find pedsim_simulator)scenarios/$(arg scenario).xml"/>
     <arg name="max_robot_speed" value="1.5"/>
     <arg name="robot_mode" value="1"/>
-    <arg name="enable_groups" value="true"/>
+    <arg name="enable_groups" value="false"/>
     <arg name="pose_initial_x" value="5.0"/>
     <arg name="pose_initial_y" value="5.0"/>
     <arg name="pose_initial_theta" value="0.7"/>
@@ -27,9 +27,18 @@
   </node>
 
   <!-- Visualizer -->
-  <include file="$(find pedsim_visualizer)/launch/visualizer.launch"/>
+  <include file="$(find pedsim_visualizer)/launch/visualizer.launch" if="$(arg visualize)"/>
 
-  <!-- Rviz -->
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities.rviz" if="$(arg visualize)"/>
+  <param name="peds_state_topic" type="string" value="/pedsim_visualizer/tracked_persons" />
+  <param name="grid_topic" type="string" value="/map" />
+  <param name="robot_state_topic" type="string" value="/odometry/filtered" />
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities.rviz" if="$(arg visualize)"/> 
+
+
+  <!-- Jackal Simulation -->
+  <include file="$(find jackal_gazebo)/launch/empty_world.launch">
+    <arg name="gui" value="false"/>
+  </include>
 
 </launch>

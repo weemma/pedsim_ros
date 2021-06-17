@@ -7,3 +7,6 @@ build
 .\#*
 .idea/
 cmake-build-debug/
+*.swp
+pedsim_simulator/scenarios
+*.rviz

@@ -7,6 +7,7 @@ set(PEDSIM_SIMULATOR_DEPENDENCIES
   std_msgs
   pedsim
   pedsim_msgs
+  spencer_tracking_msgs
   pedsim_srvs
   pedsim_utils
   std_srvs

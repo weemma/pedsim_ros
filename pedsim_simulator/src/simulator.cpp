@@ -219,12 +219,12 @@ void Simulator::updateRobotPositionFromTF() {
     // Get robot position via TF
     tf::StampedTransform tfTransform;
     try {
-      transform_listener_->lookupTransform("odom", "base_footprint",
+      transform_listener_->lookupTransform("odom", "base_link",
                                            ros::Time(0), tfTransform);
     } catch (tf::TransformException& e) {
       ROS_WARN_STREAM_THROTTLE(
           5.0,
-          "TF lookup from base_footprint to odom failed. Reason: " << e.what());
+          "TF lookup from base_link to odom failed. Reason: " << e.what());
       return;
     }
 

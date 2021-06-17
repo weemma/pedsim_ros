@@ -124,11 +124,11 @@ void SimVisualizer::publishGroupVisuals() {
 
   const auto sim_groups = q_groups_.front();
 
-  pedsim_msgs::TrackedGroups tracked_groups;
+  spencer_tracking_msgs::TrackedGroups tracked_groups;
   tracked_groups.header = sim_groups->header;
 
   for (const auto& ag : sim_groups->groups) {
-    pedsim_msgs::TrackedGroup group;
+    spencer_tracking_msgs::TrackedGroup group;
     group.group_id = ag.group_id;
 
     // TODO - update.
@@ -158,8 +158,8 @@ void SimVisualizer::publishObstacleVisuals() {
   walls_marker.color.r = 0.647059;
   walls_marker.color.g = 0.164706;
   walls_marker.color.b = 0.164706;
-  walls_marker.scale.x = 1.0;
-  walls_marker.scale.y = 1.0;
+  walls_marker.scale.x = 0.1;
+  walls_marker.scale.y = 0.1;
   walls_marker.scale.z = 2.0;
   walls_marker.pose.position.z = walls_marker.scale.z / 2.0;
   walls_marker.type = visualization_msgs::Marker::CUBE_LIST;
@@ -185,7 +185,7 @@ void SimVisualizer::setupPublishersAndSubscribers() {
   pub_person_visuals_ =
       nh_.advertise<spencer_tracking_msgs::TrackedPersons>("tracked_persons", 1);
   pub_group_visuals_ =
-      nh_.advertise<pedsim_msgs::TrackedGroups>("tracked_groups", 1);
+      nh_.advertise<spencer_tracking_msgs::TrackedGroups>("tracked_groups", 1);
 
   // TODO - get simulator node name by param.
   sub_states_ = nh_.subscribe("/pedsim_simulator/simulated_agents", 1,

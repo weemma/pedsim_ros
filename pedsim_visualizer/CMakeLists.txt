@@ -5,6 +5,8 @@ add_definitions(-Wall -Wunused -std=c++11 -pipe -Wunused -Wextra)
 set(PACKAGE_DEPS
   geometry_msgs
   pedsim_msgs
+  spencer_tracking_msgs
+  spencer_social_relation_msgs
   pedsim_utils
   roscpp
   rospy
