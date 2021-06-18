@@ -13,7 +13,8 @@ Created on Mon Dec  2
 #include "ros/subscribe_options.h"
 #include <thread>
 
-//#include<spencer_tracking_msgs/TrackedPersons.h>
+#include<spencer_tracking_msgs/TrackedPersons.h>
+//#include<pedsim_msgs/TrackedPersons.h>
 #include<pedsim_msgs/AgentStates.h>
 
 

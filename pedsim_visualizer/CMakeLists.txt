@@ -13,6 +13,7 @@ set(PACKAGE_DEPS
   std_msgs
   visualization_msgs
   dynamic_reconfigure
+  spencer_tracking_msgs
 )
 find_package(catkin REQUIRED COMPONENTS ${PACKAGE_DEPS})
 

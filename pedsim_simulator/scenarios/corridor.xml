@@ -1,33 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scenario>
-  <obstacle x1="1" y1="2" x2="30" y2="2"/>
-  <obstacle x1="1" y1="12" x2="30" y2="12"/>
+  <obstacle x1="1" y1="5" x2="70" y2="5"/>
+  <obstacle x1="1" y1="10.5" x2="70" y2="10.5"/>
 
   <!--Waypoints-->
-  <waypoint id="east_sink" x="6" y="7" r="2"/>
-  <waypoint id="west_sink" x="23" y="7" r="2"/>
-  <waypoint id="east_sinkb" x="6" y="9" r="2"/>
-  <waypoint id="west_sinkb" x="22" y="5" r="2"/>
+  <waypoint id="north" x="15" y="10" r="2" b="1"/>
+  <waypoint id="south" x="15" y="4" r="2" b="1"/>
+
+  <!-- Sinks-->
+  <waypoint id="east_sink" x="2" y="7" r="2" b="2"/>
+  <waypoint id="west_sink" x="67" y="7" r="2" b="2"/>
 
   <!--AgentClusters-->
-  <agent x="6" y="7" n="1" dx="3" dy="3" type="0">
+  <source x="6" y="7" n="1" dx="0" dy="0" type="0">
     <addwaypoint id="west_sink"/>
+  </source>
+
+  <source x="64" y="7" n="1" dx="0" dy="0" type="0">
+    <addwaypoint id="east_sink"/>
+  </source>
+
+  <agent x="0" y="0" n="1" dx="0" dy="0" type="2">
     <addwaypoint id="east_sink"/>
   </agent>
-
-  <agent x="23" y="7" n="1" dx="3" dy="3" type="0">
-    <addwaypoint id="east_sink"/>
-    <addwaypoint id="west_sink"/>
-  </agent>
-  
-  <agent x="6" y="9" n="1" dx="3" dy="3" type="0">
-    <addwaypoint id="west_sinkb"/>
-    <addwaypoint id="east_sinkb"/>
-  </agent>
-
-  <agent x="22" y="5" n="1" dx="3" dy="3" type="0">
-    <addwaypoint id="east_sinkb"/>
-    <addwaypoint id="west_sinkb"/>
-  </agent>
-
 </scenario>
