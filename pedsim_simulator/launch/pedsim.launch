@@ -3,7 +3,7 @@
   <arg name="rqt_teleop" default="false"/>
   <arg name="visualize" default="true"/>
   <arg name="with_robot" default="true"/>
-  <arg name="scenario" default="square"/>
+  <arg name="scenario" default="corridor"/>
 
   <!-- Simulator -->
   <include file="$(find pedsim_simulator)/launch/simulator.launch">
@@ -27,5 +27,5 @@
   <!-- Visualizer -->
   <include file="$(find pedsim_visualizer)/launch/visualizer.launch" if="$(arg visualize)"/>
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities.rviz" if="$(arg visualize)"/> 
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find pedsim_simulator)/rviz/social_contexts_activities_RL.rviz" if="$(arg visualize)"/> 
 </launch>
