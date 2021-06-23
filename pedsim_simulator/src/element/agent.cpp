@@ -196,7 +196,7 @@ void Agent::move(double h) {
       Ped::Tagent::setForceFactorObstacle(35);
       Ped::Tagent::setForceFactorDesired(4.2);
 
-      Ped::Tagent::setVmax(1.6);
+      Ped::Tagent::setVmax(1.1);
       Ped::Tagent::SetRadius(0.4);
       Ped::Tagent::move(h);
     }

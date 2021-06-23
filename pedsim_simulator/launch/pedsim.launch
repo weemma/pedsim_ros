@@ -4,6 +4,7 @@
   <arg name="visualize" default="true"/>
   <arg name="with_robot" default="true"/>
   <arg name="scenario" default="corridor_6people"/>
+  <arg name="map" default="corridor_small"/>
 
   <!-- Simulator -->
   <include file="$(find pedsim_simulator)/launch/simulator.launch">
@@ -20,7 +21,7 @@
   </include>
 
   <!-- Map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find pedsim_simulator)scenarios/maps/$(arg scenario).yaml">
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find pedsim_simulator)scenarios/maps/$(arg map).yaml">
     <param name="frame_id" value="odom" />
   </node>
 
