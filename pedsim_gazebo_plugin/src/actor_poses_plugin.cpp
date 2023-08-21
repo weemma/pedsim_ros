@@ -5,16 +5,16 @@ Created on Mon Dec  2
 */
 
 #include <gazebo/common/Plugin.hh>
-#include <gazebo-9/gazebo/physics/physics.hh>
-#include <gazebo-9/gazebo/util/system.hh>
+#include <gazebo/physics/physics.hh>
+#include <gazebo/util/system.hh>
 
 #include <ros/ros.h>
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
 #include <thread>
 
-#include<pedsim_msgs/TrackedPersons.h>
-#include<pedsim_msgs/AgentStates.h>
+#include <pedsim_msgs/TrackedPersons.h>
+#include <pedsim_msgs/AgentStates.h>
 
 
 

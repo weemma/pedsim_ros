@@ -104,8 +104,8 @@ void SimVisualizer::publishAgentVisuals() {
     pose_with_cov.pose.orientation = angleToQuaternion(theta);
     person.pose = pose_with_cov;
 
-    person.goal.position.x = agent_state.goal.position.x;
-    person.goal.position.y = agent_state.goal.position.y;
+    // person.goal.position.x = agent_state.goal.position.x;
+    // person.goal.position.y = agent_state.goal.position.y;
 
     geometry_msgs::TwistWithCovariance twist_with_cov;
     twist_with_cov.twist.linear.x = agent_state.twist.linear.x;
