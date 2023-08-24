@@ -15,7 +15,7 @@ Panels:
         - /Path5
         - /Marker2
       Splitter Ratio: 0.5
-    Tree Height: 833
+    Tree Height: 357
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -236,7 +236,7 @@ Visualization Manager:
       Marker Topic: /visualize_ellipses_array
       Name: MarkerArray
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -421,10 +421,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 60.17229461669922
+      Scale: 75.4801254272461
       Target Frame: <Fixed Frame>
-      X: -0.8650311231613159
-      Y: 0.3847771883010864
+      X: 10.28875732421875
+      Y: 0.6736932396888733
     Saved: ~
 Window Geometry:
   Displays:
